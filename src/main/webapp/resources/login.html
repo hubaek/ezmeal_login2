@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/src/main/webapp/resources/css/login.css" />
+</head>
+<body>
+  <!--
+  1. 모달 버튼, 히든, 모달의배경, 내용 만들기
+  2. 모달의 내용, 배경에 들어갈 자리에 로그인 html 합쳐보기
+  -->
+  <button class="btn">Login</button>
+<div class="modal hidden">
+  <div class="modal__background"></div>
+  <!-- <div class="modal__content"> -->
+    <button>Close</button>
+  <div class="wrapper">
+      <div class="container">
+        <div class="sign-up-container">
+          <form>
+            <h1>회원가입(계정생성)</h1>
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <button class="form_btn">회원가입</button>
+          </form>
+        </div>
+        <div class="sign-in-container">
+          <form>
+            <h1>로그인</h1>
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <button class="form_btn">로그인</button>
+          </form>
+        </div>
+        <div class="overlay-container">
+          <div class="overlay-left">
+            <h1>기존고객이라면?</h1>
+            <p>여기를 눌러주세욥</p>
+            <button id="signIn" class="overlay_btn">로그인</button>
+          </div>
+          <div class="overlay-right">
+            <h1>EZMeal</h1>
+            <p>EZMeal이 처음이라면? </p>
+            <button id="signUp" class="overlay_btn">회원가입</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div> 
+    
+  </div>
+</div>
+<script  src="login.js"></script>
+  
+ 
+</body>
+</html> 
