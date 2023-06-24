@@ -46,7 +46,7 @@ public class LoginController {
             // 2-1   일치하지 않으면, loginForm으로 이동
             String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");
 
-            return "redirect:/login/login?msg=" + msg;
+            return "redirect:/login?msg=" + msg;
         }
         // 2-2. lgin_id와 lgin_pw가 일치하면,
         //  세션 객체를 얻어오기
