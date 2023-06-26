@@ -14,4 +14,39 @@
         from tb_member
     </select>
 
+    <insert id="insert" parameterType="MemberDto">
+        insert into TB_MEMBER(
+                              mbr_id
+                              ,name
+                              ,role
+                              ,sex
+                              ,phone
+                              ,lgin_id
+                              ,lgin_pw
+                              ,rcmdr_cd
+                              ,acct_now_stus
+                              ,mbr_grd
+                              ,mbr_subs_agre
+                              ,usg_terms
+                              ,psnlinfo_usg_yn
+                              ,age_14_over_yn
+                              )
+        values (
+                #{mbr_id}
+               ,#{name}
+               ,10
+               ,#{sex}
+               ,#{phone}
+               ,#{lgin_id}
+               ,#{lgin_pw}
+               ,#{rcmdr_cd}
+               ,#{acct_now_stus}
+               ,'AP01'
+               ,#{mbr_subs_agre}
+               ,#{usg_terms}
+               ,#{psnlinfo_usg_yn}
+               ,#{age_14_over_yn}
+               )
+    </insert>
+
 </mapper>
