@@ -19,4 +19,7 @@ public class MemberDao {
         return session.selectOne(namespace+"mbr_id", loginId);
     }
 
+    public int mbrSignup(MemberDto memberDto) throws Exception {
+        return session.insert(namespace + "mbr_signup",memberDto);
+    }
 }

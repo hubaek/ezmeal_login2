@@ -29,5 +29,12 @@ public class MemberDaoTest {
         System.out.println("login = " + login);
     }
 
+    @Test
+    public void signupTest() throws Exception {
+        MemberDto memberDto = new MemberDto("백자바","m","1995-08-15","010-1234-5678","java@naver.com","java","1234");
+        assertTrue(memberDao.mbrSignup(memberDto) == 1);
+        System.out.println("memberDto.getLgin_id() = " + memberDto.getLgin_id());
+        System.out.println("memberDto.getName() = " + memberDto.getName());
+    }
 
 }
