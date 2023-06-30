@@ -24,6 +24,7 @@
 <%--        <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>--%>
         <%--        <li><a href="<c:url value='/register/add'/>">Sign in</a></li>--%>
         <li><a href="<c:url value='/member/signup'/>">Sign up</a></li>
+        <li><a href="<c:url value='/mypage/withdrawal'/>">회원탈퇴</a></li>
         <li><a href=""><i class="fa fa-search"></i></a></li>
     </ul>
 </div>
