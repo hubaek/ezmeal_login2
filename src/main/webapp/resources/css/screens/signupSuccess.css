@@ -6,7 +6,7 @@ body, button, input, select, textarea {
     color: #333;
 }
 html, button, input, select, textarea {
-    /*font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;*/
+    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
 }
 
 section {

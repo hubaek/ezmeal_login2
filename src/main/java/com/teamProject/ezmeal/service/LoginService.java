@@ -25,7 +25,7 @@ public class LoginService {
         }else {
             // 다 맞으면 해당 pk 넘겨준다.
             return memberDao.getMemberId(tryMbrId);
-            // controller에서는 다시 Long type으로 변경 필요
+             // controller에서는 다시 Long type으로 변경 필요
         }
     }
 }

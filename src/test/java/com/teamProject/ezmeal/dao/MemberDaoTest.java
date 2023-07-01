@@ -2,7 +2,6 @@ package com.teamProject.ezmeal.dao;
 
 import com.teamProject.ezmeal.domain.MemberDto;
 import com.teamProject.ezmeal.service.LoginService;
-import com.teamProject.ezmeal.service.MemberService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +18,6 @@ public class MemberDaoTest {
     private MemberDao memberDao;
     @Autowired
     private LoginService loginService;
-    @Autowired
-    private MemberService memberService;
-
     @Test
     public void getPassword() throws Exception {
         String kimjava100 = memberDao.getPassword("kimjava100");
@@ -31,6 +27,12 @@ public class MemberDaoTest {
     public void checkNull() throws Exception {
         Long login = loginService.getLogin("kimjava100", "asdf1234");
         System.out.println("login = " + login);
+    }
+
+    @Test
+    public void  memberInfo() throws  Exception {
+        MemberDto memberInfo = memberDao.getMemberInfo(1001L);
+        System.out.println("memberInfo = " + memberInfo);
     }
 
     @Test
@@ -60,5 +62,4 @@ public class MemberDaoTest {
         assertTrue(withdrawal==1);
 
     }
-
 }
