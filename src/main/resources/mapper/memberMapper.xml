@@ -18,15 +18,15 @@
 
     <insert id="mbr_signup" parameterType="MemberDto">
         INSERT INTO tb_member (
-                   name
-                  ,sex
-                  ,birth
-                  ,phone
-                  ,email
-                  ,lgin_id
-                  ,lgin_pw
+                               name
+                              ,sex
+                              ,birth
+                              ,phone
+                              ,email
+                              ,lgin_id
+                              ,lgin_pw
         ) values (
-                  #{name}
+                     #{name}
                  ,#{sex}
                  ,#{birth}
                  ,#{phone}
@@ -36,11 +36,29 @@
                  )
     </insert>
 
+    <select id="mbr_Info" parameterType="Long" resultType="MemberDto">
+        select *
+        from tb_member
+        where mbr_id = #{memberId}
+    </select>
+
     <!--회원탈퇴 쿼리문 del_yn(삭제여부) : 'y'로 UPDATE 해준다.-->
     <update id="mbr_withdrawal" parameterType="long">
         UPDATE tb_member
         SET del_yn = 'y'
         WHERE mbr_id = #{mbr_id}
     </update>
+
+    <update id="mbr_modify" parameterType="MemberDto">
+        UPDATE tb_member
+        SET lgin_pw =  #{lgin_pw}
+          ,name =      #{name}
+          ,email =     #{email}
+          ,phone =     #{phone}
+          ,sex =       #{sex}
+          ,birth =     #{birth}
+        WHERE lgin_id = #{lgin_id}
+    </update>
+
 
 </mapper>

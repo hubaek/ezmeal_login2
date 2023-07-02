@@ -22,5 +22,13 @@ public class MemberService {
         return memberDao.mbrWithdrawal(mbr_id);
     }
 
+    public MemberDto mbrInfo(Long memberId) throws Exception {    // 회원정보수정페이지에 띄워줄 회원정보를 조회한다.
+        return memberDao.getMemberInfo(memberId);
+    }
+
+    public int modify(MemberDto memberDto) throws Exception {
+        return memberDao.mbrModify(memberDto);
+    }
+
 
 }

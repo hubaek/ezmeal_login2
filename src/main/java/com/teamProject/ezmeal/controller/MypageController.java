@@ -1,9 +1,11 @@
 package com.teamProject.ezmeal.controller;
 
+import com.teamProject.ezmeal.domain.MemberDto;
 import com.teamProject.ezmeal.service.LoginService;
 import com.teamProject.ezmeal.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,8 +51,38 @@ public class MypageController {
 //        return "index"; // withdrawal.jsp의 ajax가 경로처리함
     }
 
-    @GetMapping("/modify")  // 회원정보수정 페이지
-    public String modify(){
-        return "modify";
+    @GetMapping("/main")
+    public String mypage() {
+        return "mypage";
     }
+
+    @GetMapping("/modify")  // 회원정보수정 페이지
+    public String modify(HttpServletRequest req, Model model){
+        HttpSession session = req.getSession();
+        Long memberId = (Long) session.getAttribute("memberId");    // 현재로그인 중인 회원번호를 가져온다.
+        try {
+            MemberDto loginMbrInfo = memberService.mbrInfo(memberId);
+            System.out.println("loginMbrInfo.getLgin_id() = " + loginMbrInfo.getLgin_id());
+            System.out.println("loginMbrInfo.getName() = " + loginMbrInfo.getName());
+            System.out.println("loginMbrInfo.getEmail() = " + loginMbrInfo.getEmail());
+            model.addAttribute("loginMbrInfo",loginMbrInfo);    // JSP에서 loginMbrInfo 객체를 불러오기위해 모델에 담아서 넘겨준다.
+            return "modify";
+        } catch (Exception e) {
+            return "mypage";
+        }
+
+    }
+
+    @PostMapping("/modify") // 회원정보수정이 완료되면 마이페이지로 돌아감
+    public String modifySuccess(MemberDto memberDto) {
+        try {
+            //
+            memberService.modify(memberDto);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return "mypage";
+    }
+
 }
+
