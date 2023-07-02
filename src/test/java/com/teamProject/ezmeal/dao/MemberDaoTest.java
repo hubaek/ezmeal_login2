@@ -60,6 +60,18 @@ public class MemberDaoTest {
         System.out.println("mbr_id = " + mbr_id);
         withdrawal = memberDao.mbrWithdrawal(mbr_id);
         assertTrue(withdrawal==1);
+    }
 
+    @Test
+    public  void mbrModifyTest() throws Exception {
+        MemberDto newmbr = new MemberDto("test", "m","1995-08-15","010-1234-5678","java@naver.com","test14","1234");
+        assertTrue(memberDao.mbrSignup(newmbr) == 1); // 회원정보를 입력한 회원을 가입한다.
+        System.out.println("newmbr_pw = " + newmbr.getLgin_pw());
+        newmbr.setLgin_pw("5964");
+        System.out.println("newmbr.change_pw = " + newmbr.getLgin_pw());
+        newmbr.setEmail("test@gmail.com");
+
+        int modity = memberDao.mbrModify(newmbr);
+        assertTrue(modity==1);  // 해당하는 회원번호의 회원의 정보를 변경한다
     }
 }
