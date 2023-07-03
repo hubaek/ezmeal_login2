@@ -14,6 +14,7 @@
 </head>
 <body>
 <ul>
+    <li><a href="/">로컬 메인</a></li>
     <li><a href="/login">로그인</a></li>
     <li><a href="/logout">로그아웃</a></li>
     <li><a href="/cart/general">일반 장바구니</a></li>
@@ -21,8 +22,8 @@
     <li><a href="//productcatelist">상품 목록</a></li>
     <li><a href="/address">배송지</a></li>
     <li><a href="/member/signup">회원가입</a></li>
-    <li><a href="/mypage/withdrawal">회원탈퇴</a></li>
-    <li><a href=""></a></li>
+<%--    <li><a href="/mypage/withdrawal">회원탈퇴</a></li>--%>
+    <li><a href="/mypage/main">마이페이지</a></li>
     <li><a href=""></a></li>
 </ul>
 </body>
