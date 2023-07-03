@@ -6,13 +6,13 @@ import com.teamProject.ezmeal.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/member")
@@ -24,11 +24,25 @@ public class MemberController {
     LoginService loginService;
 
     @GetMapping("/signup")
-    public String signUp() {
+    public String signUp() {    // 회원가입 버튼 클릭시 signup.jsp 화면 보여준다
         return "signup";
     }
-//    servlet-context.xml에서 아래 한줄로 GetMapping 대체 가능? - Get요청만 가능
-//    <view-controller path="/member/signup" view-name="signup"/>
+
+
+    @PostMapping("/checkIdDuplicate")
+    @ResponseBody
+    public Map<String, Boolean> checkIdDuplicate(@RequestBody Map<String, String> request) {    // id중복체크 post JSON
+        String id = request.get("id");  // input에 입력된 id의 value값 받아옴
+        try {
+            boolean isDuplicate = memberService.checkIdDuplicate(id);
+            Map<String, Boolean> response = new HashMap<>();
+            response.put("isDuplicate", isDuplicate);
+            return response;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
 
     @PostMapping("/signup/success")
     public String signupSuccess(MemberDto memberDto, Model model, RedirectAttributes rattr, HttpServletRequest req) {
@@ -42,6 +56,7 @@ public class MemberController {
 //        }
         // 2. DB에 신규회원 정보를 저장
         try {
+            //
             int rowCnt = memberService.signup(memberDto);    // insert
 
             if (rowCnt!=1)  // insert가 되지않았을 때 예외발생을 해서 signup페이지로 가도록 함

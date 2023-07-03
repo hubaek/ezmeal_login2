@@ -9,6 +9,14 @@ import org.springframework.stereotype.Service;
 public class MemberService {
     @Autowired
     MemberDao memberDao;
+    // service는 예외 되던지기 해야함, 처리할 수 없는건 Controller로
+    // tx처리가 Service의 핵심
+    public boolean checkIdDuplicate(String id) throws Exception {
+        // 중복 체크 로직 구현
+
+        String checkId = memberDao.idDuplicateCheck(id);
+        return checkId != null;
+    }
 
     public int signup(MemberDto memberDto) throws Exception {
         return memberDao.mbrSignup(memberDto);
