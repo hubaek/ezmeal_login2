@@ -19,11 +19,11 @@ public class MemberDao {
         return session.selectOne(namespace+"mbr_id", loginId);
     }
 
-    public String idDuplicateCheck(String lgin_id) throws Exception {   // id 조회(중복체크용) getLoginId문
-        return session.selectOne(namespace+"id_duplicate", lgin_id);
+    public String getLoginId(String lgin_id) throws Exception {   // id 조회(중복체크용) getLoginId문
+        return session.selectOne(namespace+"lgin_id", lgin_id);
     }
 
-    public int mbrSignup(MemberDto memberDto) throws Exception {    // 회원가입 resisterMember
+    public int registerMember(MemberDto memberDto) throws Exception {    // 회원가입 resisterMember
         return session.insert(namespace + "mbr_signup", memberDto);
     }
     public MemberDto getMemberInfo(Long memberId) throws Exception {    // 회원정보 조회

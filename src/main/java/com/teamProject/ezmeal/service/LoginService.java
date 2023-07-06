@@ -11,7 +11,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class LoginService {
     private final MemberDao memberDao;
-
+// loginInfo
     public Long getLogin(String tryMbrId, String tryMbrPw) throws Exception {
         // controller로 부터 받은 id, pw 정보
         // 1. id를 먼저 check -> 존재시, pw 비교 / 없을 시, 다시 login 창으로

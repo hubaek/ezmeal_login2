@@ -9,7 +9,8 @@
 </br>
 </br>
 <form action="/login?redirectURL=${redirectURL}" method="post">
-     <label for="id">id</label><input type="text" name="tryMbrId" id="id" value="${tryMbrId != null ? tryMbrId : ''}">
+    <label for="id">id</label>
+    <input type="text" name="tryMbrId" id="id" value="${tryMbrId != null ? tryMbrId : ''}">
     </br>
 
     <c:if test="${not empty wrongIdMsg}">
