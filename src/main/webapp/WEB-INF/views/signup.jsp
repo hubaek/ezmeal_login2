@@ -41,16 +41,21 @@
   <input class="input-field" type="text" name="birth" value="${memberDto.birth}" placeholder="2020/12/31">
   <div class="gender">
     <label for="">성별</label>
-    <label><input type="radio" name="sex" id="m" value="m" ${memberDto.sex == 'm' ? 'checked' : ''}/>남자</label>
-    <label><input type="radio" name="sex" id="f" value="f" ${memberDto.sex == 'f' ? 'checked' : ''}/>여자</label>
+    <label><input type="radio" name="gender" id="m" value="m" ${memberDto.gender == 'm' ? 'checked' : ''}/>남자</label>
+    <label><input type="radio" name="gender" id="f" value="f" ${memberDto.gender == 'f' ? 'checked' : ''}/>여자</label>
   </div>
-  <input type="image" src="/img/register.png" id="button" alt="회원가입">
+  <input type="image" src="/img/signup.png" id="button" alt="회원가입">
   <%--        <button>회원 가입</button>--%>
 </form>
 
 <%--<script src="/javascript/signup.js"></script>--%>
 
 <script>
+
+  var msg = "${msg}";
+  if (msg !== "") {
+    alert(msg);
+  }
 
   function checkIdDuplicate() {
     var idInput = document.getElementById("lgin_id");

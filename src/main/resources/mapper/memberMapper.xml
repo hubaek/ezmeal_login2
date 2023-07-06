@@ -17,7 +17,7 @@
     </select>
 
     <!--    id 중복체크누르면, 입력한 lgin_id이 존재하는지 조회한다. -->
-    <select id="id_duplicate" parameterType="String" resultType="String">
+    <select id="lgin_id" parameterType="String" resultType="String">
         SELECT lgin_id
         FROM tb_member
         WHERE lgin_id = #{lgin_id}
@@ -27,7 +27,7 @@
     <insert id="mbr_signup" parameterType="MemberDto">
         INSERT INTO tb_member (
                                name
-                              ,sex
+                              ,gender
                               ,birth
                               ,phone
                               ,email
@@ -35,7 +35,7 @@
                               ,lgin_pw
         ) values (
                   #{name}
-                 ,#{sex}
+                 ,#{gender}
                  ,#{birth}
                  ,#{phone}
                  ,#{email}
@@ -65,7 +65,7 @@
           ,name =      #{name}
           ,email =     #{email}
           ,phone =     #{phone}
-          ,sex =       #{sex}
+          ,gender =       #{gender}
           ,birth =     #{birth}
         WHERE lgin_id = #{lgin_id}
     </update>
