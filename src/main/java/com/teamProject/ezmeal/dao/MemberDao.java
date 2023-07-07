@@ -11,16 +11,16 @@ public class MemberDao {
     private final SqlSession session;
     private static final String namespace = "tb_member.";
 
+    public String getLoginId(String lgin_id) throws Exception {
+        return session.selectOne(namespace+"lgin_id", lgin_id);
+    }
+
     public String getPassword(String loginId) throws Exception {
         return session.selectOne(namespace+"lgin_pw", loginId);
     }
 
     public Long getMemberId(String loginId) throws Exception {  // mbr_id(회원번호) 조회
         return session.selectOne(namespace+"mbr_id", loginId);
-    }
-
-    public String getLoginId(String lgin_id) throws Exception {   // id 조회(중복체크용) getLoginId문
-        return session.selectOne(namespace+"lgin_id", lgin_id);
     }
 
     public int registerMember(MemberDto memberDto) throws Exception {    // 회원가입 resisterMember
