@@ -69,7 +69,7 @@ public class MemberController {
             rattr.addFlashAttribute("msg","Signup_OK");
             // DB에 회원정보가 저장이 되고 동시에 로그인까지 되게 하려면,
             // memberId를 세션에 담는다.
-            Long memberId = loginService.getLogin(lgin_id,lgin_pw);
+            Long memberId = loginService.loginInfo(lgin_id);
             System.out.println("memberId = " + memberId);
             HttpSession session = req.getSession();
             session.setAttribute("memberId",memberId);
