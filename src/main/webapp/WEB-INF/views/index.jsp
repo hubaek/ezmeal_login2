@@ -1,10 +1,12 @@
+<%@ page import="com.teamProject.ezmeal.domain.MemberDto" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<c:set var="loginId"
-       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
-<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
-<c:set var="loginOut" value="${loginId=='' ? 'Login' : 'ID='+=loginId}"/>
+<%--<%@ page session="false" %>--%>
+<%--<c:set var="loginId"--%>
+<%--       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>--%>
+
+<c:set var="loginOutLink" value="${sessionScope.memberId==null ? '/login' : '/logout'}"/>
+<c:set var="loginOut" value="${sessionScope.memberId==null ? '로그인' : '로그아웃'}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +17,8 @@
 <body>
 <ul>
     <li><a href="/">로컬 메인</a></li>
-    <li><a href="/login">로그인</a></li>
-    <li><a href="/logout">로그아웃</a></li>
+    <li><a href="/mypage/main">회원명 : ${loginMbrInfo.lgin_id}</a></li>
+    <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
     <li><a href="/cart/general">일반 장바구니</a></li>
     <li><a href="/cart/subscript">구독 장바구니</a></li>
     <li><a href="//productcatelist">상품 목록</a></li>
