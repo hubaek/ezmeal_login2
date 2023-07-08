@@ -54,8 +54,8 @@ public class MypageController {
     }
 
     @GetMapping("/modify")  // 회원정보수정 페이지
-    public String modify(HttpServletRequest req, Model model){
-        HttpSession session = req.getSession();
+    public String modify(HttpSession session, Model model){
+//        HttpSession session = req.getSession();
         Long memberId = (Long) session.getAttribute("memberId");    // 현재로그인 중인 회원번호를 가져온다.
         try {
             MemberDto loginMbrInfo = memberService.mbrInfo(memberId);   // 현재 로그인중인 회원정보를 조회한다.
