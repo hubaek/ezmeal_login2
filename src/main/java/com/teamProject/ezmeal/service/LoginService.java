@@ -23,10 +23,7 @@ public class LoginService {
     }
 
     public Long loginInfo(String loginId) throws Exception {
-
         return memberDao.getMemberId(loginId);
         // controller에서는 다시 Long type으로 변경 필요
-
-
     }
 }
