@@ -3,25 +3,29 @@ package com.teamProject.ezmeal.controller;
 import com.teamProject.ezmeal.domain.MemberDto;
 import com.teamProject.ezmeal.service.LoginService;
 import com.teamProject.ezmeal.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/member")
 public class MemberController {
-    @Autowired
-    MemberService memberService;
 
-    @Autowired
-    LoginService loginService;
+    private final MemberService memberService;
+    private final LoginService loginService;
 
 
     @PostMapping("/checkIdDuplicate")
@@ -46,16 +50,20 @@ public class MemberController {
     // PostMapping(/signup)
     // View success.jsp
     @PostMapping("/signup")
-    public String signupSuccess(MemberDto memberDto, String lgin_id, String lgin_pw ,Model model,
-                                RedirectAttributes rattr, HttpServletRequest req) {
+    public String signupSuccess(@Valid MemberDto memberDto, BindingResult bindingResult, String lgin_id, String lgin_pw ,
+                                Model model, RedirectAttributes rattr, HttpServletRequest req) {
         // 1. 유효성 검사
-//        if (!isValid(memberDto)) {
-//            String msg = URLEncoder.encode("id를 잘못 입력하셨습니다.","utf-8");
-//
-//            m.addAttribute("msg",msg);
-//            return "redirect:/member/signup";
-////            return "redirect:/member/signup?msg="+msg;
-//        }
+        if (bindingResult.hasErrors()) {
+            List<ObjectError> errors = bindingResult.getAllErrors();
+            for (ObjectError error : errors) {
+                System.out.println(error.getDefaultMessage());
+                model.addAttribute("errors", bindingResult);
+                model.addAttribute("errorMsg", error.getDefaultMessage());
+            }
+            // 에러 메시지를 처리한 후에 다시 회원가입 페이지로 이동하거나, 필요한 로직을 수행합니다.
+            return "signup";
+        }
+
         // 2. DB에 신규회원 정보를 저장
         try {
             int rowCnt = memberService.signup(memberDto);    // insert
@@ -71,15 +79,15 @@ public class MemberController {
             System.out.println("memberId = " + memberId);
             HttpSession session = req.getSession();
             session.setAttribute("memberId",memberId);
+            MemberDto loginMbrInfo = memberService.mbrInfo(memberId);
+            session.setAttribute("loginMbrInfo",loginMbrInfo);
             model.addAttribute("checkSignupSuccess", "signup success!!");
-
             return "signupSuccess"; // insert 성공시에 signupSuccess 페이지로 감
         } catch (Exception e) {
             e.printStackTrace();
-            model.addAttribute(memberDto);
-            model.addAttribute("msg","아이디가 이미 존재합니다. 회원가입을 다시 해주세요");
-
-            return "forward:/member/signup";    // 예외처리 발생시 signup(회원가입)페이지로 돌아감
+//            rattr.addAttribute(memberDto);
+            rattr.addFlashAttribute("msg","아이디가 이미 존재합니다. 회원가입을 다시 해주세요");
+            return "redirect:/member/signup";    // 예외처리 발생시 signup(회원가입)페이지로 돌아감
         }
     }
 
