@@ -27,6 +27,7 @@ public class MemberDto {
     @Size(min = 4, max = 16, message = "4자에서 16자사이의 아이디를 입력하세요")
     private String lgin_id;
     @NotEmpty(message = "비밀번호를 입력해주세요.")
+    @Size(min = 10, max = 16, message = "10자이상 영문/숫자/특수문자, 2개이상 조합")
     private String lgin_pw;
     private String rcmdr_cd;
     private String acct_now_stus;
