@@ -134,9 +134,19 @@ input[type=submit] {
     margin-left: 8px;
 }
 
+
+
 .button-section>button {
     height: 44px;
     border-radius: 3px;
+}
+
+/*적용 안됨.. 나중에 개선*/
+.button:disabled {
+    border-color: rgb(221, 221, 221);
+    color: rgb(221, 221, 221);
+    cursor: default;
+
 }
 
 .button {

@@ -112,7 +112,7 @@
             <div class="msg"> <p id="email-msg" class="valid-msg"></p> </div>
           </div>
           <div class="button-section">
-            <button class="button" type="button" onclick="checkEmailDuplicate()">
+            <button class="button" id="emailButton" type="button" onclick="checkEmailDuplicate()">
               <span class="button-value">중복확인</span>
               <!-- 기존 로그인된 이메일이면 disable, 수정하면 중복확인버튼 on -->
             </button>
@@ -174,7 +174,7 @@
             </label>
           </div>
           <div class="value" height="40">
-            <input class="input-field" height="40" type="text" id="birth" name="birth" value="${memberDto.birth}" oninput="validateBirthInput()" placeholder="2020/12/31">
+            <input class="input-field" height="40" type="text" id="birth" name="birth" value="${memberDto.birth}" oninput="validateBirthInput()" placeholder="숫자만 입력해 주세요(YYYY/MM/DD)">
             <div class="msg"> <p id="birth-msg" class="valid-msg"></p> </div>
           </div>
           <div class="button-section"></div>
@@ -341,6 +341,7 @@
     const emailInput = $("#email");
     const email = emailInput.val();
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // 이메일 정규식
+    let button = $("#emailButton");
 
     // 중복확인전에 이메일 형식으로 썼는지 검증하고, 조건에 안맞으면 경고창
     if (email === "") {
@@ -351,21 +352,38 @@
       return;
     }
 
-
-
-
-
+    $.ajax({
+      type: "POST",
+      url: "/member/checkEmailDuplicate",
+      contentType: "application/json",
+      data: JSON.stringify({"email" : email}),
+      success : function (response) {
+        const emailCheck = response.emailCheck;
+        if (emailCheck) {
+          alert("사용 불가능한 이메일 입니다.")
+          emailInput.removeClass("invalid");
+        } else {
+          alert("사용 가능한 이메일 입니다.")
+          // button.prop("disabled", true);
+          emailInput.addClass("invalid")
+        }
+      }
+    });
   }
 
   // 회원가입을 요청했을때 ID 중복체크를 했는지 확인하는 함수
   function validateForm() {
-    var idResultMsg = $("#id-result-msg");
+    let idInput = $("#lgin_id");
+    let emailInput = $("#email");
 
-    // ID 중복확인을 하지 않았을 경우
+    // ID 중복확인을 하지 않았을 경우, email 중복확인을 하지 않았을 경우
     // if (idResultMsg.html() !== "사용 가능한 ID입니다.") {
-    if (idResultMsg.hasClass("invalid")) {
+    if (!(idInput.hasClass("invalid"))) {
       alert("아이디 중복확인을 해야 합니다.");
       return false; // 회원가입 요청을 중단
+    } else if (!(emailInput.hasClass("invalid"))) {
+      alert("이메일 중복확인을 해야 합니다.");
+      return false;
     }
   }
 
@@ -468,7 +486,7 @@
     }
   }
 
-  // 이름입력란이 빈칸이면 경고문 출력
+  // 생일입력란이 빈칸, YYYYMMDD형식 안적으면 경고문 출력
   function validateBirthInput() {
     const birthInput = $("#birth");
     const birthMsg = $("#birth-msg");
@@ -485,15 +503,25 @@
     } else {
       birthMsg.text("");
     }
-
+    // 생년월일 숫자 입력시 자동으로 YYYY/MM/DD 구분해주는 '/'을 넣어주는 식
     if (birth2.length > 4) {
       birth2 = birth2.replace(/(\d{4})(\d{2})(\d{0,2})/, "$1/$2/$3");
     } else if (birth2.length > 2) {
       birth2 = birth2.replace(/(\d{4})(\d{0,2})/, "$1/$2");
     }
     birthInput.val(birth2);
-
   }
+
+  // 전체 동의 체크했을때, 모든 이용약관 체크되는 기능
+  $(document).ready(function() {
+    $("#TermsAgreeAll").change(function() {
+      if ($(this).is(":checked")) {
+        $(".required-input").prop("checked", true);
+      } else {
+        $(".required-input").prop("checked", false);
+      }
+    });
+  });
 
 </script>
 </body>
