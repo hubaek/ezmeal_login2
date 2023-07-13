@@ -21,6 +21,17 @@ public class MemberService {
             throw new RuntimeException(e);
         }
     }
+    // 이메일 중복 체크
+    public boolean checkEmailDuplicate(String email) {
+        try {
+            String checkEmail = memberDao.getEmail(email);
+            return checkEmail != null ; // email이 있으면 true 반환
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
 
     public int signup(MemberDto memberDto)  {
         try {
