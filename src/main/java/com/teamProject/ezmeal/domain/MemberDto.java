@@ -1,6 +1,7 @@
 package com.teamProject.ezmeal.domain;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
@@ -14,16 +15,18 @@ public class MemberDto {
     private Integer role;
     @NotEmpty(message = "성별을 입력해주세요.")
     private String gender;
-    @NotEmpty(message = "생년월일을 입력해주세요.")
+    @NotEmpty(message = "생년월일을 입력해 주세요.")
+    @Size(min = 10, message = "유효한 생년월일 형식으로 입력해 주세요.")
     private String birth;
-    @NotEmpty(message = "휴대폰 번호를 입력해주세요.")
+    @NotEmpty(message = "휴대폰 번호를 입력해 주세요.")
+    @Size(min = 10, message = "유효한 휴대폰 번호를 입력해 주세요.")
     private String phone;
-    @NotEmpty(message = "이메일을 입력해주세요.")
-    @Email(message = "유효한 이메일 주소를 입력해주세요.")
+    @NotEmpty(message = "이메일을 입력해 주세요.")
+    @Email(message = "유효한 이메일 주소를 입력해 주세요.")
     private String email;
     private String sc_typ;
     private String sc_lgin_id;
-    @NotEmpty(message = "아이디를 입력해주세요.")
+    @NotEmpty(message = "아이디를 입력해 주세요.")
     @Size(min = 4, max = 16, message = "4자에서 16자사이의 아이디를 입력하세요")
     private String lgin_id;
     @NotEmpty(message = "비밀번호를 입력해주세요.")
