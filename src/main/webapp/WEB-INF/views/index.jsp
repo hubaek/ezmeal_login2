@@ -17,9 +17,6 @@
 <%--        MemberDto loginMbrInfo = memberService.mbrInfo(memberId);--%>
 <%--        request.setAttribute("loginMbrInfo", loginMbrInfo);--%>
 <%--    }--%>
-<%
-    MemberDto loginMbrInfo = (MemberDto) session.getAttribute("loginMbrInfo");
-%>
 
 <%--%>--%>
 
@@ -35,27 +32,21 @@
 <div style="padding-top: 100px">
     <ul>
         <li><a href="/">로컬 메인</a></li>
-        <li><a href="/cart/general">일반 장바구니</a></li>
-        <li><a href="/cart/subscript">구독 장바구니</a></li>
+        <li><a href="/cart">장바구니</a></li>
+        <li><a href="/address">배송지</a></li>
+        <li><a href="/order">주문서</a></li>
+        <br>
+        <br>
         <li><a href="/product/catelist?cate_cd=02">상품 목록</a></li>
-        <li><a href="/product/detail?prod_cd=P00006">상품 상세</a></li>
-
+        <li><a href="/product/detail?cate_cd=05&prod_cd=3">상품 상세(옵션X)</a></li>
+        <li><a href="/product/detail?cate_cd=05&prod_cd=16">상품 상세(옵션O)</a></li>
+        <br>
+        <br>
         <c:if test="${not empty loginMbrInfo}">
             <li><a href="/mypage/main">회원명 : ${loginMbrInfo.name}</a></li>
         </c:if>
         <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
-
-        <li><a href="/cart">일반 장바구니</a></li>
-        <li><a href="//productcatelist">상품 목록</a></li>
-
-        <li><a href="/address">배송지</a></li>
-
-        <li><a href=""></a></li>
-        <li><a href="/product/regist">관리자 상품 CRUD</a></li>
-
         <li><a href="/member/signup">회원가입</a></li>
-
-        <%--    <li><a href="/mypage/withdrawal">회원탈퇴</a></li>--%>
         <li><a href="/mypage/main">마이페이지</a></li>
     </ul>
 </div>
