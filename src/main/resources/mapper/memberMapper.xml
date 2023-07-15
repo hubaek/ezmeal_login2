@@ -29,6 +29,18 @@
         WHERE email = #{email}
     </select>
 
+    <select id="find_id" parameterType="map" resultType="String">
+        SELECT lgin_id
+        FROM tb_member
+        WHERE name = #{name} AND email = #{email}
+    </select>
+
+    <select id="find_pw" parameterType="map" resultType="String">
+        SELECT lgin_pw
+        FROM tb_member
+        WHERE lgin_id = #{lgin_id} AND email = #{email}
+    </select>
+
     <!--  회원가입 쿼리문  -->
     <insert id="mbr_signup" parameterType="MemberDto">
         INSERT INTO tb_member (
