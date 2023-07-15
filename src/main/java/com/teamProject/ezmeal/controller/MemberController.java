@@ -108,8 +108,35 @@ public class MemberController {
 
     // 아이디찾기
     @GetMapping("/find/id")
-    public String getFindID() {
+    public String getMemberFindId() {
         return "findId";
+    }
+
+    @PostMapping("/find/id")
+    public String postMemberFindID(String name, String email, Model model) {
+        // 아이디 찾기에서 입력한 이름과 이메일을 받아서 아이디를 찾는다.
+        String findId = memberService.getFindId(name, email);
+        System.out.println("findID = " + findId);
+        // 찾은 아이디를 조회 화면에 알려준다.
+        model.addAttribute("findId",findId);
+        model.addAttribute("name",name);   // 입력받은 회원명도 같이 담아준다.
+        return "findIdSuccess";
+    }
+
+    // 비밀번호찾기
+    @GetMapping("/find/password")
+    public String getMemberFindPw() {
+        return "findPw";
+    }
+
+    @PostMapping("/find/password")
+    public String postMemberFindPw(String lgin_id, String email, Model model){
+        System.out.println("lgin_id = " + lgin_id);
+        System.out.println("email = " + email);
+        String findPw = memberService.getFindPw(lgin_id, email);
+        System.out.println("findPw = " + findPw);
+        model.addAttribute("findPw", findPw);   // id, email이 일치하는 회원의 패스워드를 모델에 담아준다.
+        return "findPwSuccess";
     }
 
 

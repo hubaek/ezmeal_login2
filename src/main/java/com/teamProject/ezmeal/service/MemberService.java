@@ -86,6 +86,7 @@ public class MemberService {
         }
     }
 
+    // 아이디 찾기
     public String getFindId(String name, String email) {
         try {
             return memberDao.selectFindId(name,email);
@@ -93,6 +94,11 @@ public class MemberService {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+    }
+
+    // 비밀번호 찾기
+    public String getFindPw(String id, String email) {
+        return memberDao.selectFindPw(id,email);
     }
 
 }
