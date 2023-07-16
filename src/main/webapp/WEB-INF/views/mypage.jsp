@@ -18,13 +18,128 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ezMeal-test</title>
+    <link rel="stylesheet" href="/css/screens/mypage.css">
 </head>
 <body>
-<ul>
-    <li><a href="/mypage/modify">회원정보수정</a></li>
-    <li><a href="/mypage/withdrawal">회원탈퇴</a></li>
-    <li><a href="/">홈으로</a></li>
+<jsp:include page="header.jsp" />
+<jsp:include page="mypageHead.jsp"/>
 
-</ul>
+<section class="container">
+    <div class="content-wrap">
+<%--        <div class="head">--%>
+<%--            <div class="user-info-box">--%>
+<%--                <div class="inner">--%>
+<%--                    <div class="column user-info">--%>
+<%--                            <span class="img">--%>
+<%--                                <i class="ico-cou-level01">{등급이미지}</i>--%>
+<%--                            </span>--%>
+<%--                        <div class="txt">--%>
+<%--                            <p class="p-name">--%>
+<%--                                <strong class="name">{회원명}</strong>--%>
+<%--                            </p>--%>
+<%--                            <ul class="list grade">--%>
+<%--                                <li>--%>
+<%--                                    <!-- <i class="ico-bl-crown"></i> -->--%>
+<%--                                    풋사과{회원등급}--%>
+<%--                                </li>--%>
+<%--                                <li id="groupPointRateText">--%>
+<%--                                    1%적립{등급별적립금}--%>
+<%--                                </li>--%>
+<%--                            </ul>--%>
+<%--                            <p class="level" id="levelUp">300,000원 더 구매 시, 청사과로 등급 상승!</p>--%>
+<%--                        </div>--%>
+<%--                        <a href="/mypage/memberBenefitsInfo" class="benefit button"> <span>등급 혜택</span> </a>--%>
+<%--                    </div>--%>
+<%--                    <!-- user info 끝 -->--%>
+<%--                    <dl class="column order">--%>
+<%--                        <dt>주문/배송</dt>--%>
+<%--                        <dd>--%>
+<%--                            <a href="/mypage/orderlist">--%>
+<%--                                <Strong class="num" id="orderConuntText">0</Strong>--%>
+<%--                                건--%>
+<%--                            </a>--%>
+<%--                        </dd>--%>
+<%--                    </dl>--%>
+<%--                    <!-- order -->--%>
+<%--                    <dl class="column coupon">--%>
+<%--                        <dt>쿠폰</dt>--%>
+<%--                        <dd>--%>
+<%--                            <a href="/mypage/myCoupon">--%>
+<%--                                <strong class="num" id="couponCountText">0</strong>--%>
+<%--                                개--%>
+<%--                            </a>--%>
+<%--                        </dd>--%>
+<%--                    </dl>--%>
+<%--                    <!-- coupon -->--%>
+<%--                    <dl class="column point">--%>
+<%--                        <dt>포인트</dt>--%>
+<%--                        <dd class="text-primary">--%>
+<%--                            <a href="/mypage/myPoint">--%>
+<%--                                <strong class="num" id="pointText">0</strong>--%>
+<%--                                p--%>
+<%--                            </a>--%>
+<%--                        </dd>--%>
+<%--                    </dl>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+        <!-- head 끝 -->
+
+        <!-- 컬리 left side 시작 -->
+
+        <div class="main-section">
+            <div class="left-section">
+                <div class="left-head">My EZMeal</div>
+                <ul class="left-ul">
+                    <li>
+                        <!-- <a class="active row">주문내역</a> -->
+                        <a class="row" href="">주문내역
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"><defs><path id="gfk9q0rhta" d="M1.657 1.657L9.657 1.657 9.657 9.657"></path></defs><g fill="none" fill-rule="evenodd"><g><g><g><g transform="translate(-339 -398) translate(0 386) translate(339 12) translate(4.69 6.343)"><use stroke="#999" stroke-linecap="round" stroke-width="1.8" stroke-linejoin="round" transform="rotate(45 5.657 5.657)" xlink:href="#gfk9q0rhta"></use></g></g></g></g></g></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="row" href="">찜한상품
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"><defs><path id="gfk9q0rhta" d="M1.657 1.657L9.657 1.657 9.657 9.657"></path></defs><g fill="none" fill-rule="evenodd"><g><g><g><g transform="translate(-339 -398) translate(0 386) translate(339 12) translate(4.69 6.343)"><use stroke="#999" stroke-linecap="round" stroke-width="1.8" stroke-linejoin="round" transform="rotate(45 5.657 5.657)" xlink:href="#gfk9q0rhta"></use></g></g></g></g></g></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="row" href="">배송지관리
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"><defs><path id="gfk9q0rhta" d="M1.657 1.657L9.657 1.657 9.657 9.657"></path></defs><g fill="none" fill-rule="evenodd"><g><g><g><g transform="translate(-339 -398) translate(0 386) translate(339 12) translate(4.69 6.343)"><use stroke="#999" stroke-linecap="round" stroke-width="1.8" stroke-linejoin="round" transform="rotate(45 5.657 5.657)" xlink:href="#gfk9q0rhta"></use></g></g></g></g></g></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="row" href="">적립금
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"><defs><path id="gfk9q0rhta" d="M1.657 1.657L9.657 1.657 9.657 9.657"></path></defs><g fill="none" fill-rule="evenodd"><g><g><g><g transform="translate(-339 -398) translate(0 386) translate(339 12) translate(4.69 6.343)"><use stroke="#999" stroke-linecap="round" stroke-width="1.8" stroke-linejoin="round" transform="rotate(45 5.657 5.657)" xlink:href="#gfk9q0rhta"></use></g></g></g></g></g></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="row" href="">쿠폰
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"><defs><path id="gfk9q0rhta" d="M1.657 1.657L9.657 1.657 9.657 9.657"></path></defs><g fill="none" fill-rule="evenodd"><g><g><g><g transform="translate(-339 -398) translate(0 386) translate(339 12) translate(4.69 6.343)"><use stroke="#999" stroke-linecap="round" stroke-width="1.8" stroke-linejoin="round" transform="rotate(45 5.657 5.657)" xlink:href="#gfk9q0rhta"></use></g></g></g></g></g></svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="row" href="/mypage/modify">개인정보수정
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"><defs><path id="gfk9q0rhta" d="M1.657 1.657L9.657 1.657 9.657 9.657"></path></defs><g fill="none" fill-rule="evenodd"><g><g><g><g transform="translate(-339 -398) translate(0 386) translate(339 12) translate(4.69 6.343)"><use stroke="#999" stroke-linecap="round" stroke-width="1.8" stroke-linejoin="round" transform="rotate(45 5.657 5.657)" xlink:href="#gfk9q0rhta"></use></g></g></g></g></g></svg>
+                        </a>
+                    </li>
+                </ul>
+                <a href="/mypage/inquiry/list" class="inquiryList">
+                    <div class="inquiryText">
+                        <span class="text1">도움이 필요하신가요 ?</span>
+                        <span class="text2">1:1 문의하기</span>
+                    </div>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24">
+                        <defs><path id="gfk9q0rhta" d="M1.657 1.657L9.657 1.657 9.657 9.657"></path></defs>
+                        <g fill="none" fill-rule="evenodd"><g><g><g><g transform="translate(-339 -398) translate(0 386) translate(339 12) translate(4.69 6.343)"><use stroke="#333" stroke-linecap="round" stroke-width="1.8" stroke-linejoin="round" transform="rotate(45 5.657 5.657)" xlink:href="#gfk9q0rhta"></use></g></g></g></g></g>
+                    </svg>
+                </a>
+            </div>
+            <%--left-section의 끝--%>
+        </div>
+
+    </div>
+</section>
+
 </body>
 </html>
