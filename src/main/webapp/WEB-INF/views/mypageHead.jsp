@@ -19,19 +19,20 @@
         <div class="inner">
             <div class="column user-info">
                             <span class="img">
-                                <i class="ico-cou-level01">{등급이미지}</i>
+<%--                                <i class="ico-cou-level01"></i>--%>
+                                <img src="${sessionScope.loginMbrInfo.grd_img}" width="70px" alt="등급이미지">
                             </span>
                 <div class="txt">
                     <p class="p-name">
-                        <strong class="name">{회원명}</strong>
+                        <strong class="name">${sessionScope.loginMbrInfo.name}님</strong>
                     </p>
                     <ul class="list grade">
                         <li>
-                            <!-- <i class="ico-bl-crown"></i> -->
-                            풋사과{회원등급}
+                            <i class="ico-bl-crown"></i>
+                            ${sessionScope.loginMbrInfo.mbr_grd_name}
                         </li>
                         <li id="groupPointRateText">
-                            1%적립{등급별적립금}
+                            1%적립
                         </li>
                     </ul>
                     <p class="level" id="levelUp">300,000원 더 구매 시, 청사과로 등급 상승!</p>

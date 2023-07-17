@@ -73,6 +73,9 @@
     overflow: inherit;
     padding-left: 0px;
 }
+.list.grade {
+    height : 17px;
+}
 ol, ul {
     list-style: none;
 
