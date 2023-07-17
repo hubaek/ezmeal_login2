@@ -152,7 +152,7 @@ public class CartController {
         System.out.println("memberId: "+memberId);
         System.out.println("cartProductDto: "+cartProductDto.toString());
 
-        memberId = 1006L;
+        memberId = 1007L;
         System.out.println("memberId: "+memberId);
 
 

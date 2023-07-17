@@ -1,10 +1,7 @@
 package com.teamProject.ezmeal.service;
 
 import com.teamProject.ezmeal.dao.*;
-import com.teamProject.ezmeal.domain.ProductDto;
-import com.teamProject.ezmeal.domain.ProductImgDto;
-import com.teamProject.ezmeal.domain.ProductOptionDto;
-import com.teamProject.ezmeal.domain.ProductReviewDto;
+import com.teamProject.ezmeal.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,13 +47,13 @@ public class ProductService {
                 prodList = productDao.selectProductListByCateCdMiniLowprc(cate_cd);
                 System.out.println("1");
             } else if ("lowprc".equals(sortkeyword)) {
-                    prodList = productDao.selectProductListByCateCdMiniLowprc(cate_cd);
+                prodList = productDao.selectProductListByCateCdMiniLowprc(cate_cd);
                 System.out.println("2");
             } else if ("high".equals(sortkeyword)) {
-                    prodList = productDao.selectProductListByCateCdMiniHighprc(cate_cd);
+                prodList = productDao.selectProductListByCateCdMiniHighprc(cate_cd);
                 System.out.println("3");
             } else if ("new".equals(sortkeyword)) {
-                    prodList = productDao.selectProductListByCateCdMiniNew(cate_cd);
+                prodList = productDao.selectProductListByCateCdMiniNew(cate_cd);
                 System.out.println("4");
             } else {
                 prodList = productDao.selectProductListByCateCdMini(cate_cd);
@@ -132,6 +129,32 @@ public class ProductService {
         return prodDetailMap;
     }
 
+
+    /*관리자 상품 관리 페이지(읽기, 수정용)*/
+    public HashMap getOneProductByProdCdForMng (Long prod_cd) throws SQLException {
+        /*상품 객체*/
+        ProductDto product = productDao.selectProductByProdCd(prod_cd);
+        /*옵션 List*/
+        List<ProductOptionDto> optList = productOptionDao.selectOptionProductsByProdCd(prod_cd);
+        /*이미지 List*/
+        List<ProductImgDto> imgList = productImgDao.selectProdCdImgAll(prod_cd);
+        /*할인코드 List*/
+        List<ProductDiscountDto> dcList = productDiscountDao.selectDiscountListByCateCd();
+        /*카테고리 List*/
+
+        /*거래처 List*/
+
+
+        HashMap registProductMap = new HashMap();
+        registProductMap.put("product",product);
+        registProductMap.put("optList",optList);
+        registProductMap.put("imgList",imgList);
+        registProductMap.put("dcList",dcList);
+        registProductMap.put("cateList",dcList);
+        registProductMap.put("custList",dcList);
+
+        return registProductMap;
+    }
 
 
     /*-----------관리자용-------------------*/

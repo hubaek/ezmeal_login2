@@ -1,4 +1,4 @@
-//package com.teamProject.ezmeal.domain;
+package com.teamProject.ezmeal.domain;//package com.teamProject.ezmeal.domain;
 //
 //import org.junit.Test;
 //
