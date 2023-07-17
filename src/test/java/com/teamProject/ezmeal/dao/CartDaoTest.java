@@ -10,14 +10,13 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
-public class MemberGradeBenefitDaoTest {
-
+public class CartDaoTest {
     @Autowired
-    private MemberGradeBenefitDao memberGradeBenefitDao;
+    private CartDao cartDao;
 
     @Test
-    public void getGrade(){
-        int pointRate = memberGradeBenefitDao.getPointRate(1001L);
-        assertEquals(3, pointRate);
+    public void getCartSeq() {
+        Long cartSeq = cartDao.selectCartSeq(1001L);
+        assertEquals((long)cartSeq, 1L);
     }
 }

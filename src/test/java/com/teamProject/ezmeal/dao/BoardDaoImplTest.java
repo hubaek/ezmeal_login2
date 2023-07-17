@@ -1,15 +1,18 @@
 package com.teamProject.ezmeal.dao;
 
-import com.teamProject.ezmeal.domain.*;
-import org.junit.*;
-import org.junit.runner.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.test.context.*;
-import org.springframework.test.context.junit4.*;
+import com.teamProject.ezmeal.domain.BoardDto;
+import com.teamProject.ezmeal.domain.SearchCondition;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})

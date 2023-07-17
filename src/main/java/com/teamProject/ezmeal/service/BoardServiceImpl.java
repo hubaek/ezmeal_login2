@@ -1,11 +1,13 @@
 package com.teamProject.ezmeal.service;
 
-import com.teamProject.ezmeal.dao.*;
-import com.teamProject.ezmeal.domain.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
+import com.teamProject.ezmeal.dao.BoardDao;
+import com.teamProject.ezmeal.domain.BoardDto;
+import com.teamProject.ezmeal.domain.SearchCondition;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class BoardServiceImpl implements BoardService {

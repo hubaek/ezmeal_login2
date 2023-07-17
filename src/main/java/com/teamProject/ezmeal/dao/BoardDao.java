@@ -1,8 +1,10 @@
 package com.teamProject.ezmeal.dao;
 
-import com.teamProject.ezmeal.domain.*;
+import com.teamProject.ezmeal.domain.BoardDto;
+import com.teamProject.ezmeal.domain.SearchCondition;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 public interface BoardDao {
     BoardDto select(Integer bno) throws Exception;

@@ -1,11 +1,14 @@
 package com.teamProject.ezmeal.dao;
 
-import com.teamProject.ezmeal.domain.*;
-import org.apache.ibatis.session.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
+import com.teamProject.ezmeal.domain.BoardDto;
+import com.teamProject.ezmeal.domain.SearchCondition;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {

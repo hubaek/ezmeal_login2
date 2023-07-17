@@ -1,12 +1,13 @@
 package com.teamProject.ezmeal.service;
 
-import com.teamProject.ezmeal.dao.*;
-import com.teamProject.ezmeal.domain.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
-import org.springframework.transaction.annotation.*;
+import com.teamProject.ezmeal.dao.BoardDao;
+import com.teamProject.ezmeal.dao.CommentDao;
+import com.teamProject.ezmeal.domain.CommentDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.List;
 
 @Service
 public class CommentServiceImpl implements CommentService {
