@@ -22,19 +22,19 @@ public class ProductImgDao {
 
 
     /* 상품코드에 해당하는 모든 이미지 찾기 */
-    public List<ProductImgDto> selectProdCdImgAll(String prod_cd) throws SQLException {
+    public List<ProductImgDto> selectProdCdImgAll(Long prod_cd) throws SQLException {
         return session.selectList(namespace+"select_prod_img_all", prod_cd);
     }
 
     /* 상품코드로  특정 이미지 찾기 */
-    public ProductImgDto selectProdCdTypImg(String prod_cd, String typ) throws SQLException {
+    public ProductImgDto selectProdCdTypImg(Long prod_cd, String typ) throws SQLException {
         Map map = new HashMap<>();
         map.put("prod_cd", prod_cd);
         map.put("typ", typ);
         return session.selectOne(namespace+"select_prod_type_img", map);
     }
 
-    /* 카테고리로 검색한 상품리스트의 이미지 리스트 */
+    /* 카테고리로 검색한 상품리스트의 대표이미지 리스트 */
     public List<ProductImgDto> selectCateCdImgTyp(String cate_cd) throws SQLException {
         return session.selectList(namespace+"select_cate_cd_img_list", cate_cd);
     }

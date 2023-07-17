@@ -1,11 +1,12 @@
 package com.teamProject.ezmeal.domain;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class ProductImgDto {
 
-    private Long seq;
-    private String prod_cd, typ, detail, url;
+    private Long seq, prod_cd;
+    private String typ, detail, url;
     private Integer verti_size, width_size;
     private String extns;
     private Integer file_size_lim;
@@ -20,7 +21,7 @@ public class ProductImgDto {
 
     }
 
-    public ProductImgDto(Long seq, String prod_cd, String typ, String detail, String url, Integer verti_size,
+    public ProductImgDto(Long seq, Long prod_cd, String typ, String detail, String url, Integer verti_size,
                          Integer width_size, String extns, Integer file_size_lim, String use_yn, String del_yn,
                          String rmk, LocalDateTime in_dtm, String in_id, LocalDateTime up_dtm, String up_id) {
         this.seq = seq;
@@ -56,6 +57,20 @@ public class ProductImgDto {
                 ", del_yn='" + del_yn + '\'' +
                 '}';
     }
+    /*------------------------------------------------------------------------------------------------------*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductImgDto that = (ProductImgDto) o;
+        return Objects.equals(seq, that.seq) && Objects.equals(prod_cd, that.prod_cd) && Objects.equals(typ, that.typ) && Objects.equals(detail, that.detail) && Objects.equals(url, that.url) && Objects.equals(verti_size, that.verti_size) && Objects.equals(width_size, that.width_size) && Objects.equals(extns, that.extns) && Objects.equals(file_size_lim, that.file_size_lim) && Objects.equals(use_yn, that.use_yn) && Objects.equals(del_yn, that.del_yn) && Objects.equals(rmk, that.rmk) && Objects.equals(in_dtm, that.in_dtm) && Objects.equals(in_id, that.in_id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(seq, prod_cd, typ, detail, url, verti_size, width_size, extns, file_size_lim, use_yn, del_yn, rmk, in_dtm, in_id);
+    }
 
     /*-------------------------------------------------------------------- getter & setter ---------------------*/
     public Long getSeq() {
@@ -66,11 +81,11 @@ public class ProductImgDto {
         this.seq = seq;
     }
 
-    public String getProd_cd() {
+    public Long getProd_cd() {
         return prod_cd;
     }
 
-    public void setProd_cd(String prod_cd) {
+    public void setProd_cd(Long prod_cd) {
         this.prod_cd = prod_cd;
     }
 
