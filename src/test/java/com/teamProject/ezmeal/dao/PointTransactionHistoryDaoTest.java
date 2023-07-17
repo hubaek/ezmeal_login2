@@ -1,12 +1,13 @@
 package com.teamProject.ezmeal.dao;
 
+import com.teamProject.ezmeal.domain.PointTransactionHistoryDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class PointTransactionHistoryDaoTest {
@@ -16,6 +17,14 @@ public class PointTransactionHistoryDaoTest {
 
     @Test
     public void checkPointCanUse(){
-        pointTransactionHistoryDao.pointCanUse(1001L);
+        int i = pointTransactionHistoryDao.pointCanUse(1001L);
+        System.out.println("i = " + i);
+    }
+
+    @Test
+    public void updatePointHistory(){
+        PointTransactionHistoryDto pointTransactionHistoryDto = new PointTransactionHistoryDto(1001L, "USEPOINT", "상품 결제 사용 포인트", -200, "사용", 123213L);
+        int i = pointTransactionHistoryDao.insertPointHistory(pointTransactionHistoryDto);
+        assertEquals(1, i);
     }
 }

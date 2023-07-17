@@ -1,10 +1,5 @@
 package com.teamProject.ezmeal.domain;
 
-import org.springframework.web.util.UriComponentsBuilder;
-
-import java.net.SocketTimeoutException;
-
-
 
 public class PageHandler {
 //    private int page; // 현재 페이지
