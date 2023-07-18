@@ -130,7 +130,7 @@
           <select class="select_box" id="opt_select">
             <c:forEach items="${optList}" var="option">
               <option value="${option.opt_seq}_${option.sale_prc}">
-                  &nbsp;${product.getName()}&nbsp;${option.name}&nbsp;&nbsp;${option.sale_prc}원
+                &nbsp;${product.getName()}&nbsp;${option.name}&nbsp;&nbsp;${option.sale_prc}원
               </option>
             </c:forEach>
           </select>

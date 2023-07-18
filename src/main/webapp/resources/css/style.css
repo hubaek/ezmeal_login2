@@ -10,3 +10,6 @@
 /* screens */
 @import "screens/cart.css";
 @import "screens/addressList.css";
+
+/* main 내용 부분 */
+/*@import "screens/mypageLeft.css";*/

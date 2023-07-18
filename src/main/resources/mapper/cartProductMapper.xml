@@ -16,7 +16,7 @@
             JOIN tb_product p ON cp.prod_cd = p.prod_cd
             join tb_product_inventory pi on cp.prod_cd = pi.prod_cd
             LEFT JOIN tb_product_option po ON cp.opt_seq = po.opt_seq
-            SET cp.soldout_yn = if(if(po.qty is null, 1, po.qty) > pi.curr_inv, 'y', 'n')
+        SET cp.soldout_yn = if(if(po.qty is null, 1, po.qty) > pi.curr_inv, 'y', 'n')
         WHERE cp.cart_seq = #{cartSeq}
     </update>
 
@@ -134,7 +134,7 @@
             #{item}
         </foreach>
         and cp.del_yn &lt;&gt; 'y'
-          group by cp.prod_cd, pi.curr_inv
+        group by cp.prod_cd, pi.curr_inv
         having (pi.curr_inv - sum(cp.qty * IF(po.qty IS NULL, 1, po.qty))) &lt; 0
     </select>
 

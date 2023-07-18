@@ -1,7 +1,7 @@
 package com.teamProject.ezmeal.dao;
 
-import com.teamProject.ezmeal.domain.CartProductDto;
 import com.teamProject.ezmeal.domain.joinDomain.CartJoinProductDto;
+import com.teamProject.ezmeal.domain.CartProductDto;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;

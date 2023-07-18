@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class ProductInventoryDaoTest {
@@ -24,14 +24,14 @@ public class ProductInventoryDaoTest {
 
     /*테스트 순서*/
     /*test용 상품인 상품코드 30의 재고 로우 삭제(진짜).
-    * 30번 관련 재고 객체 생성
-    * 30으로 재고 현황 찾기
-    * 재고현황 변동 줘보기 (+) (-) (+)
-    * 거래처의 대량 입고       아.. 거래처도 만들어야돼 ㅠㅠㅠㅠ
-    * 재고 List 받기
-    * 재고현황 List + 10000 & -10000하기
-    * 재고 의미적 삭제(console 확인)
-    * 재고 위험 List 받기*/
+     * 30번 관련 재고 객체 생성
+     * 30으로 재고 현황 찾기
+     * 재고현황 변동 줘보기 (+) (-) (+)
+     * 거래처의 대량 입고       아.. 거래처도 만들어야돼 ㅠㅠㅠㅠ
+     * 재고 List 받기
+     * 재고현황 List + 10000 & -10000하기
+     * 재고 의미적 삭제(console 확인)
+     * 재고 위험 List 받기*/
 
     @Test
     public void productInventoryDaoTest() throws SQLException {

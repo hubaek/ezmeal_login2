@@ -1,5 +1,7 @@
 package com.teamProject.ezmeal.domain;
 
+import com.teamProject.ezmeal.dao.ProductDiscountDao;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;

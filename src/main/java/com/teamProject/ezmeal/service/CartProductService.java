@@ -2,17 +2,14 @@ package com.teamProject.ezmeal.service;
 
 import com.teamProject.ezmeal.dao.CartDao;
 import com.teamProject.ezmeal.dao.CartProductDao;
-import com.teamProject.ezmeal.domain.CartProductDto;
 import com.teamProject.ezmeal.domain.joinDomain.CartJoinProductDto;
+import com.teamProject.ezmeal.domain.CartProductDto;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 // TODO transaction이 핵심 -> 이거의 예외, service 단의 목적
 @Service
@@ -164,8 +161,8 @@ public class CartProductService {
     public boolean addProductToCart(Long mbrId, CartProductDto cartProductDto) {
         System.out.println("------------서비스 진입-----------");
         /*카트에 상품이 있는지 확인한다.
-        * 있으면 -> 수량 update
-        * 없으면 -> Insert  */
+         * 있으면 -> 수량 update
+         * 없으면 -> Insert  */
         try {
             /*아직 자동증가 아니라 seq 지정해줘야함 지금은 수동으로! */
 //            cartProductDto.setCart_prod_seq(13L);

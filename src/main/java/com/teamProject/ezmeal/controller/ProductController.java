@@ -1,17 +1,25 @@
 package com.teamProject.ezmeal.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teamProject.ezmeal.domain.ProductDto;
+import com.teamProject.ezmeal.domain.ProductImgDto;
 import com.teamProject.ezmeal.service.ProductImgService;
 import com.teamProject.ezmeal.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+//import org.json.JSONObject;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/product")
@@ -140,9 +148,9 @@ public class ProductController {
     public String productMngRegistUpdatePage(ProductDto productDto, Model model) throws SQLException {
 
         /*서비스에서 업데이트 하는 메서드 사용하겠지?
-        * 업데이트 성공하면 성공 로우수 1이니까
-        * 반환값 1일 때 로직 작성하자
-        * 반환값 1이 아닐때는 예외처리 해야해*/
+         * 업데이트 성공하면 성공 로우수 1이니까
+         * 반환값 1일 때 로직 작성하자
+         * 반환값 1이 아닐때는 예외처리 해야해*/
         /*모델에 담기*/
 
 
