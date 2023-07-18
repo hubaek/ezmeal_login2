@@ -47,7 +47,7 @@
         </c:if>
         <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
         <li><a href="/member/signup">회원가입</a></li>
-        <li><a href="/mypage/main">마이페이지</a></li>
+        <li><a href="/mypage/modify">마이페이지</a></li>
     </ul>
 </div>
 <jsp:include page="footer.jsp" />

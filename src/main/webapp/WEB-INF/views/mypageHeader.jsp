@@ -9,7 +9,8 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/css/screens/mypageHead.css">
+    <link rel="stylesheet" href="/css/screens/mypageHeader.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -73,5 +74,19 @@
     </div>
 </div>
 <!-- head 끝 -->
+<script>
+    // 현재 포인트 잔액을 마이페이지 프로필에 띄워주기위한 코드
+    $(document).ready(function (){
+        $.ajax({
+            type : "GET",
+            url:"/point",
+            success : function (response) {
+                $("#pointText").text(response.point);
+            }
+        });
+    });
+</script>
+
+
 </body>
 </html>
