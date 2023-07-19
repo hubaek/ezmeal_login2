@@ -11,6 +11,9 @@
 <html>
 <head>
   <title>회원가입</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/screens/signup.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
