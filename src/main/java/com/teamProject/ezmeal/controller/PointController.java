@@ -44,7 +44,11 @@ public class PointController {
             point.setFormattedTrjsDtm(formatDate);
         }
 
+        // 현재 남은 적립금을 보여주기 위한 로직
+        int point = pointTransactionHistoryService.getUsablePoint(memberId);
+
         model.addAttribute("pointList", pointList);
+        model.addAttribute("point",point);
         return "point";
     }
 
