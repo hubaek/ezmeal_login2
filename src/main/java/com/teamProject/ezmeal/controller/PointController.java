@@ -1,14 +1,19 @@
 package com.teamProject.ezmeal.controller;
 
+import com.teamProject.ezmeal.domain.PointTransactionHistoryDto;
 import com.teamProject.ezmeal.service.PointTransactionHistoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -20,11 +25,27 @@ public class PointController {
     @GetMapping("/point")
     @ResponseBody
     public Map<String, Integer> getUsablePoint(HttpSession session) {
-        Long memberID = (Long) session.getAttribute("memberId");
-        int point = pointTransactionHistoryService.getUsablePoint(memberID);
+        Long memberId = (Long) session.getAttribute("memberId");
+        int point = pointTransactionHistoryService.getUsablePoint(memberId);
         Map<String , Integer> pointMap = new HashMap<>();
         pointMap.put("point", point);
         return pointMap;
+    }
+
+    @GetMapping("/mypage/point")
+    public String getPointList(Model model, HttpSession session) {
+        Long memberId =  (Long) session.getAttribute("memberId");
+        List<PointTransactionHistoryDto> pointList = pointTransactionHistoryService.getPointList(memberId);
+
+        // DateTimeFormatter를 사용하여 LocalDateTime을 "yy.MM.dd"  형식의 문자열로 변환
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy.MM.dd");
+        for (PointTransactionHistoryDto point : pointList) {
+            String formatDate = point.getTrjs_dtm().format(formatter);
+            point.setFormattedTrjsDtm(formatDate);
+        }
+
+        model.addAttribute("pointList", pointList);
+        return "point";
     }
 
 
