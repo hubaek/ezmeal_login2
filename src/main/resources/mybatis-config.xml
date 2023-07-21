@@ -40,6 +40,10 @@
         <typeAlias alias="OrderDetailDto" type="com.teamProject.ezmeal.domain.OrderDetailDto"/>
         <typeAlias alias="DeliveryMasterDto" type="com.teamProject.ezmeal.domain.DeliveryMasterDto"/>
 
+        <!--  관리자  -->
+        <typeAlias alias="AdminMemberDto" type="com.teamProject.ezmeal.domain.AdminMemberDto"/>
+
+
 
 
     </typeAliases>
