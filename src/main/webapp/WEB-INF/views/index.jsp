@@ -48,6 +48,7 @@
         <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
         <li><a href="/member/signup">회원가입</a></li>
         <li><a href="/mypage/modify">마이페이지</a></li>
+        <li><a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=128bb6ea849a8688553d9c14722811cf&redirect_uri=http://localhost:8080/">카카오 로그인</a></li>
     </ul>
 </div>
 <jsp:include page="footer.jsp" />
