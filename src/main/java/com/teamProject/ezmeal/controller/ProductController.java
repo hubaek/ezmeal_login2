@@ -1,21 +1,18 @@
 package com.teamProject.ezmeal.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teamProject.ezmeal.domain.ProductDto;
-import com.teamProject.ezmeal.domain.ProductImgDto;
+import com.teamProject.ezmeal.domain.ProductOptionDto;
+import com.teamProject.ezmeal.domain.ProductRegistrationRequest;
 import com.teamProject.ezmeal.service.ProductImgService;
 import com.teamProject.ezmeal.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-//import org.json.JSONObject;
+
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -60,10 +57,10 @@ public class ProductController {
         HashMap map = productService.getOneProductByProdCd(prod_cd);
 
         /*품절된 상품인 경우*/
-        if(map.get("product")==null){
-            redirectAttributes.addAttribute("msg","품절된 상품입니다.");
-            return "redirect:/product/catelist?cate_cd="+cate_cd ;
-        }
+//        if(map.get("product")==null){
+//            redirectAttributes.addAttribute("msg","품절된 상품입니다.");
+//            return "redirect:/product/catelist?cate_cd="+cate_cd ;
+//        }
 
         model.addAttribute("product",map.get("product"));
         model.addAttribute("optList",map.get("optList"));
@@ -84,50 +81,77 @@ public class ProductController {
 
 
 
-
-
-
     /*-------------------------------  관리자용 상품 등록.수정.읽기.삭제 시작  ------------------------------------------*/
 
     /*관리자 상품 CRUD page - READ */
     @GetMapping("/regist/read")
     public String productRegistPage(Model model, Long prod_cd) throws SQLException, JsonProcessingException {
         /*관리자용 상품 페이지(읽기)에 필요한 것 모두 받아오기*/
-        HashMap map = productService.getOneProductByProdCd(prod_cd);
+        HashMap map = productService.getOneProductByProdCdForMng(prod_cd);
 
         /*모델에 담기*/
         model.addAttribute("product", map.get("product"));
         model.addAttribute("optList", map.get("optList"));
         model.addAttribute("imgList", map.get("imgList"));
-        model.addAttribute("imgList", map.get("imgList"));
-        model.addAttribute("imgList", map.get("imgList"));
+        model.addAttribute("dcList", map.get("dcList"));
+        model.addAttribute("cateList", map.get("cateList"));
+        model.addAttribute("custList", map.get("custList"));
+        model.addAttribute("stusList", map.get("stusList"));
         model.addAttribute("mode","READ");
 
         return "productRegistration";
-    }
 
+    }
 
 
     /*관리자 상품 CRUD page - WRITE 새상품 등록 페이지 */
     @GetMapping("/regist/write")
-    public String productMngRegistWritePage(Model model) {
+    public String productMngRegistWritePage(Model model) throws SQLException {
 
+        /*관리자용 상품 페이지(읽기)에 필요한 것 모두 받아오기*/
+        HashMap map = productService.getListForProductRegist();
+
+        /*모델에 담기*/
+        model.addAttribute("dcList", map.get("dcList"));
+        model.addAttribute("cateList", map.get("cateList"));
+        model.addAttribute("custList", map.get("custList"));
+        model.addAttribute("stusList", map.get("stusList"));
         model.addAttribute("mode","WRITE");
 
         return "productRegistration";
     }
     /*------------------------------*/
 
-    /*관리자 상품 CRUD page - WRITE */
     @PostMapping("/regist/write")
-    public String productMngRegistWritePostPage(@RequestBody ProductDto productDto, Model model) throws SQLException {
-//        int resultNum = productService.registerProduct(productDto);
-//        if(resultNum==1) {
-//            model.addAttribute("mode", "WRITE_OK");
-//        }
-        return "redirect:/product/mng/productlist?cate_cd=02";
+    public ResponseEntity<?> registerProduct(@RequestBody ProductRegistrationRequest request) throws SQLException {
+        // 이제 request 안에는 ProductDto 객체와 ProductOptionDto 객체 리스트 있음
+        ProductDto productDto = request.getProductDto();
+        List<ProductOptionDto> productOptionDtos = request.getProductOptionDto();
+
+        for(ProductOptionDto optDto : productOptionDtos){
+            System.out.println("optDto: "+optDto.toString());
+        }
+
+        Map<String,Integer> registResult = productService.prodAndOptionRegist(productDto, productOptionDtos);
+
+        // 처리가 성공적으로 끝나면, 응답을 클라이언트에 보냅니다.
+        return ResponseEntity.ok(registResult);
     }
-    /*------------------------------*/
+
+
+
+
+//
+//
+//    /*관리자 상품 CRUD page - WRITE */
+//    @PostMapping("/regist/write")
+//    public void productMngRegistWritePostPage(ProductDto productDto, ProductOptionDto[] productOptionDto) throws SQLException {
+//
+//        System.out.println("productDto: "+productDto);
+//        System.out.println();
+//        System.out.println("optDto.length: "+productOptionDto.length);
+//    }
+//    /*------------------------------*/
 
 
 
@@ -148,9 +172,9 @@ public class ProductController {
     public String productMngRegistUpdatePage(ProductDto productDto, Model model) throws SQLException {
 
         /*서비스에서 업데이트 하는 메서드 사용하겠지?
-         * 업데이트 성공하면 성공 로우수 1이니까
-         * 반환값 1일 때 로직 작성하자
-         * 반환값 1이 아닐때는 예외처리 해야해*/
+        * 업데이트 성공하면 성공 로우수 1이니까
+        * 반환값 1일 때 로직 작성하자
+        * 반환값 1이 아닐때는 예외처리 해야해*/
         /*모델에 담기*/
 
 

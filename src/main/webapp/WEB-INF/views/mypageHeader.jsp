@@ -64,7 +64,7 @@
             <dl class="column point">
                 <dt>포인트</dt>
                 <dd class="text-primary">
-                    <a href="/mypage/myPoint">
+                    <a href="/mypage/point">
                         <strong class="num" id="pointText">0</strong>
                         p
                     </a>

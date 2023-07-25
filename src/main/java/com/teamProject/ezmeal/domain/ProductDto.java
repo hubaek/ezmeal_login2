@@ -1,8 +1,5 @@
 package com.teamProject.ezmeal.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -29,12 +26,12 @@ public class ProductDto {
 
 
     public ProductDto(String cate_cd,String prod_stus,String cust_cd,String dc_cd,String name,String mng_prod_nm,
-                      String sfkp_stus,String sfkp_mtd,Integer sp_prc,Integer cnsmr_prc,Integer sale_prc,
-                      Integer mgn_rate, String dscpt,String detail,Integer min_qty,Integer weight,
-                      String stnd,String orplc,String recipe,String mtd,String distb_tlmt,
-                      String vld_start_dt,String vld_end_dt,String mng,String fst_reg_dt,
-                      String sale_yn,String dp_yn,String del_yn,String inv_yn,String opt_yn,String rmk,
-                      String in_id,String up_id){
+               String sfkp_stus,String sfkp_mtd,Integer sp_prc,Integer cnsmr_prc,Integer sale_prc,
+               Integer mgn_rate, String dscpt,String detail,Integer min_qty,Integer weight,
+               String stnd,String orplc,String recipe,String mtd,String distb_tlmt,
+               String vld_start_dt,String vld_end_dt,String mng,String fst_reg_dt,
+               String sale_yn,String dp_yn,String del_yn,String inv_yn,String opt_yn,String rmk,
+               String in_id,String up_id){
         this.cate_cd=cate_cd;
         this.prod_stus=prod_stus;
         this.cust_cd=cust_cd;
@@ -70,7 +67,7 @@ public class ProductDto {
         this.up_id=up_id;
     }
 
-    ProductDto(){}
+    public ProductDto(){}
     /*-------------------------------------------------------------------   [생성자 끝]   -------------------*/
 
     /*-----------------------------------------------------------------   [toString & equals 시작]   -------*/
@@ -195,7 +192,7 @@ public class ProductDto {
         return sale_prc;
     }
 
-    public void setSale_prc(int sale_prc) {
+    public void setSale_prc(Integer sale_prc) {
         this.sale_prc = sale_prc;
     }
 

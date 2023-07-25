@@ -98,7 +98,7 @@
         where prod_cd In (select prod_cd
                           from tb_product
                           where cate_cd LIKE concat(#{cate_cd}, '%')  AND sale_yn='y'
-                            AND dp_yn='y' AND del_yn='n' AND prod_stus IN (1,2))
+                                AND dp_yn='y' AND del_yn='n' AND prod_stus IN (1,2))
 
         GROUP BY prod_cd
     </select>
