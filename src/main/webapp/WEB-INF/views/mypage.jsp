@@ -81,5 +81,12 @@
   </ul>
 </div>
 <jsp:include page="footer.jsp"/>
+
+<script>
+  const modifyMsg = "${modifyMsg}";
+  if (modifyMsg !== ""){
+    alert(modifyMsg);
+  }
+</script>
 </body>
 </html>
