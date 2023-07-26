@@ -38,7 +38,8 @@
   <li><a href="/address">배송지</a></li>
   <li><a href="/order">주문서</a></li>
   <li><a href="/orderPayment">주문 내역</a></li>
-
+  <li><a href="/admin/order/before-management">관리자 - 발주</a></li>
+  <li><a href="/admin/delivery/prepare">관리자 - 배송준비중</a></li>
 
 
 
@@ -70,7 +71,7 @@
     <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
     <li><a href="/member/signup">회원가입</a></li>
     <li><a href="/mypage/modify">마이페이지</a></li>
-    <li><a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=128bb6ea849a8688553d9c14722811cf&redirect_uri=http://localhost:8080/oauth">카카오 로그인</a></li>
+
 
 
 
@@ -81,12 +82,5 @@
   </ul>
 </div>
 <jsp:include page="footer.jsp"/>
-
-<script>
-  const modifyMsg = "${modifyMsg}";
-  if (modifyMsg !== ""){
-    alert(modifyMsg);
-  }
-</script>
 </body>
 </html>
