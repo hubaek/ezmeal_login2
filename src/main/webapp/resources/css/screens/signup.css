@@ -289,13 +289,14 @@ input[type=radio] {
     padding: 0;
 }
 
-.required-input {
+.bottom-main input.required-input {
     /* overflow: hidden; */
     /* position: absolute;
     clip: rect(0px, 0px, 0px, 0px);
     clip-path: inset(50%);
     width: 1px;
     height: 1px; */
+    display: block;
 }
 
 .requiredTerms {
