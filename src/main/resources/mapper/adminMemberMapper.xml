@@ -18,10 +18,39 @@
         WHERE emp_id = #{empId}
     </select>
 
+
+
     <select id="selectMemberList" resultType="MemberDto">
         SELECT DATE_FORMAT(m.in_dtm, '%Y-%m-%d') as in_dtm, m.name, m.lgin_id, g.name as mbr_grd_name, m.phone, m.gender, m.birth
         FROM TB_MEMBER m, TB_MEMBER_GRADE g
         WHERE m.mbr_grd = g.mbr_grd_cd
     </select>
+
+    <select id="selectMembers" parameterType="map" resultType="MemberDto">
+        SELECT DATE_FORMAT(m.in_dtm, '%Y-%m-%d') as in_dtm, m.name, m.lgin_id, g.name as mbr_grd_name, m.phone, m.gender, m.birth
+        FROM tb_member m, tb_member_grade g
+        WHERE 1=1
+        AND m.mbr_grd = g.mbr_grd_cd
+        <if test="name !=null and name != ''">
+            AND m.name = #{name}
+        </if>
+        <if test="lgin_id !=null and lgin_id != ''">
+            AND m.lgin_id = #{lgin_id}
+        </if>
+        <if test="mbr_grd_name !=null and mbr_grd_name != ''">
+            AND  g.name= #{mbr_grd_name}
+        </if>
+        <if test="gender !=null and gender != ''">
+            AND m.gender = #{gender}
+        </if>
+        <if test="birth !=null and birth != ''">
+            AND m.birth = #{birth}
+        </if>
+        <if test="in_dtm !=null and in_dtm != ''">
+            AND m.in_dtm = #{in_dtm}
+        </if>
+
+    </select>
+
 
 </mapper>
