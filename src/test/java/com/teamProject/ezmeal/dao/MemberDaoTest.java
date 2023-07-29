@@ -11,7 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
@@ -51,10 +52,10 @@ public class MemberDaoTest {
         Long login = loginService.loginInfo("kimjava100");
         System.out.println("login = " + login);
     }
-    
+
     @Test
     public void getMemberId() throws Exception {
-       Long getMemberIdTest = memberDao.selectMemberId("modify");
+        Long getMemberIdTest = memberDao.selectMemberId("modify");
         System.out.println("getMemberIdTest = " + getMemberIdTest);
     }
 

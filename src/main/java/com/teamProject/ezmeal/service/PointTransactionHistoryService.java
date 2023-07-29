@@ -2,7 +2,6 @@ package com.teamProject.ezmeal.service;
 
 import com.teamProject.ezmeal.dao.PointTransactionHistoryDao;
 import com.teamProject.ezmeal.domain.PointTransactionHistoryDto;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +22,4 @@ public class PointTransactionHistoryService {
     public List<PointTransactionHistoryDto> getPointList(Long memberId) {
         return pointTransactionHistoryDao.selectPointList(memberId);
     }
-
 }

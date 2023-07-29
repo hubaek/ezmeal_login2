@@ -27,8 +27,8 @@ public class PointTransactionHistoryDaoTest {
         int i = pointTransactionHistoryDao.insertPointHistory(pointTransactionHistoryDto);
         assertEquals(1, i);
     }
-    
-    
+
+
     // Baek
     @Test
     public void getUsablePoint(){
