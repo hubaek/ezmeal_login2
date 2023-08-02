@@ -135,7 +135,7 @@
             <div class="msg"> <p id="phone-msg" class="valid-msg"></p> </div>
           </div>
           <div class="button-section">
-            <button class="button" type="button">
+            <button class="button" type="button" style="display: none">
               <span class="button-value">인증번호 받기</span>
             </button>
           </div>
