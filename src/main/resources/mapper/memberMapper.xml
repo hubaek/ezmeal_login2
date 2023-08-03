@@ -64,6 +64,15 @@
                  ,#{lgin_pw}
                  )
     </insert>
+    
+    <insert id="insertCartSeq" parameterType="Long">
+        INSERT INTO tb_cart (
+                             mbr_id
+                             )
+        VALUES (
+                #{memberId}
+               )
+    </insert>
 
     <!--  회원정보를 조회하는 쿼리문  -->
     <select id="selectMemberInfo" parameterType="Long" resultType="MemberDto">
