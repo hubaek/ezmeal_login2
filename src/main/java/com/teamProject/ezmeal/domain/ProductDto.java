@@ -1,17 +1,19 @@
 package com.teamProject.ezmeal.domain;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class ProductDto {
     private Long prod_cd;
     private String cate_cd, prod_stus, cust_cd, dc_cd, name, mng_prod_nm, sfkp_stus, sfkp_mtd;
-    private Integer sp_prc, cnsmr_prc, sale_prc, mgn_rate;
+    private Integer sp_prc, cnsmr_prc, sale_prc, dc_rate, mgn_rate;
     private String dscpt;
 
     private String detail;
     private Integer min_qty, weight;
-    private String stnd, orplc, recipe, mtd, distb_tlmt, vld_start_dt, vld_end_dt, mng, fst_reg_dt;
+    private String stnd, orplc, recipe, mtd, distb_tlmt, vld_start_dt, vld_end_dt, mng;
+    private LocalDate fst_reg_dt;
     private String sale_yn, dp_yn, del_yn, inv_yn, opt_yn, rmk;
 
     private LocalDateTime in_dtm;
@@ -26,10 +28,10 @@ public class ProductDto {
 
 
     public ProductDto(String cate_cd,String prod_stus,String cust_cd,String dc_cd,String name,String mng_prod_nm,
-               String sfkp_stus,String sfkp_mtd,Integer sp_prc,Integer cnsmr_prc,Integer sale_prc,
+               String sfkp_stus,String sfkp_mtd,Integer sp_prc,Integer cnsmr_prc,Integer sale_prc, Integer dc_rate,
                Integer mgn_rate, String dscpt,String detail,Integer min_qty,Integer weight,
                String stnd,String orplc,String recipe,String mtd,String distb_tlmt,
-               String vld_start_dt,String vld_end_dt,String mng,String fst_reg_dt,
+               String vld_start_dt,String vld_end_dt,String mng,LocalDate fst_reg_dt,
                String sale_yn,String dp_yn,String del_yn,String inv_yn,String opt_yn,String rmk,
                String in_id,String up_id){
         this.cate_cd=cate_cd;
@@ -43,6 +45,7 @@ public class ProductDto {
         this.sp_prc=sp_prc;
         this.cnsmr_prc=cnsmr_prc;
         this.sale_prc=sale_prc;
+        this.dc_rate=dc_rate;
         this.mgn_rate=mgn_rate;
         this.dscpt=dscpt;
         this.detail=detail;
@@ -196,6 +199,10 @@ public class ProductDto {
         this.sale_prc = sale_prc;
     }
 
+    public Integer getDc_rate() { return dc_rate; }
+
+    public void setDc_rate(Integer dc_rate) { this.dc_rate = dc_rate; }
+
     public Integer getMgn_rate() { return mgn_rate; }
 
     public void setMgn_rate(Integer mgn_rate) { this.mgn_rate = mgn_rate; }
@@ -296,11 +303,11 @@ public class ProductDto {
         this.mng = mng;
     }
 
-    public String getFst_reg_dt() {
+    public LocalDate getFst_reg_dt() {
         return fst_reg_dt;
     }
 
-    public void setFst_reg_dt(String fst_reg_dt) {
+    public void setFst_reg_dt(LocalDate fst_reg_dt) {
         this.fst_reg_dt = fst_reg_dt;
     }
 

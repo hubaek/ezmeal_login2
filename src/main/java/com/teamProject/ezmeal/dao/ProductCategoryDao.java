@@ -16,9 +16,14 @@ public class ProductCategoryDao {
     private SqlSession session;
     private static String namespace = "tb_product_category.";
 
-    /**/
+    /*상품 카테고리 level2 중분류만 가져오기*/
     public List<ProductCategoryDto> selectCategoryList() throws SQLException {
         return session.selectList(namespace+"select_all_category");
+    }
+
+    /*(카테고리코드, 카테고리이름)의 Map*/
+    public List<ProductCategoryDto> selectCateCdAndNameList() throws SQLException {
+        return session.selectList(namespace+"select_all_catecd_and_name");
     }
 
 }

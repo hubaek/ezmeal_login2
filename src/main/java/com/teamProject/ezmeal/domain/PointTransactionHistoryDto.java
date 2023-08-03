@@ -28,7 +28,7 @@ public class PointTransactionHistoryDto {
     private String in_id; // 최초등록자식별번호
     private LocalDateTime up_dtm; // 최종수정일시
     private String up_id; // 최종수정자식별번호
-    private String formattedTrjsDtm;
+    private String formattedTrjsDtm; // 일자 변환
 
     // 포인트 사용때 적용하는 생성자 - usfl과 trjs_dtm은 mapper에서 수행
     public PointTransactionHistoryDto(long mbr_id, String trjs_cd, String name, int trjs_pnt, String stus, Long pay_id) {
@@ -40,6 +40,8 @@ public class PointTransactionHistoryDto {
         this.pay_id = pay_id;
     }
 
+
+
     // Baek
     // 포인트 내역을 보여주기 위한 생성자
     public PointTransactionHistoryDto(LocalDateTime trjs_dtm, String dscpt, String vld_end_dt, int trjs_pnt) {
@@ -48,5 +50,4 @@ public class PointTransactionHistoryDto {
         this.vld_end_dt = vld_end_dt;
         this.trjs_pnt = trjs_pnt;
     }
-
 }

@@ -10,7 +10,7 @@ public class ProductReviewTotalDto {
     /*-----------------------------------------------------------------------------*/
     public ProductReviewTotalDto(){}
 
-    public ProductReviewTotalDto(Long prod_cd, Double rvAvg, Integer rvCnt) {
+    public ProductReviewTotalDto(Long prod_cd, Double rvAvg,  Integer rvCnt) {
         this.prod_cd = prod_cd;
         this.rvAvg = rvAvg;
         this.rvCnt = rvCnt;
