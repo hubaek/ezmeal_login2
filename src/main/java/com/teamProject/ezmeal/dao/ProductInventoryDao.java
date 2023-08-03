@@ -1,5 +1,6 @@
 package com.teamProject.ezmeal.dao;
 
+import com.teamProject.ezmeal.domain.ProductDiscountDto;
 import com.teamProject.ezmeal.domain.ProductInventoryDto;
 import com.teamProject.ezmeal.domain.restAPIDomain.InventoryData;
 import org.apache.ibatis.session.SqlSession;

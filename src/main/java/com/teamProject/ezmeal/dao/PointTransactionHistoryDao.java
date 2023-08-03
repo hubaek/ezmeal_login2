@@ -27,6 +27,7 @@ public class PointTransactionHistoryDao {
         return session.selectOne(namespace + "selectPoint", memberId);
     }
 
+    // 포인트 내역 조회
     public List<PointTransactionHistoryDto> selectPointList(Long memberId) {
         return session.selectList(namespace + "selectPointList", memberId);
     }

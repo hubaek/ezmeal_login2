@@ -1,5 +1,6 @@
 package com.teamProject.ezmeal.dao;
 
+import com.teamProject.ezmeal.domain.joinDomain.AdminOrderOrderDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
@@ -36,10 +39,11 @@ public class AdminOrderDaoTest {
 
     @Test
     public void updateOrderMasterOrderDetailStatusAfterAdminOrderCheckBtn() {
-        List<Long> list = new ArrayList<>();
-        list.add(202307235005L);
-        list.add( 202307235004L);
-        int i = adminOrderDao.updateOrderMasterOrderDetailStatusAfterAdminOrderCheckBtn(list);
+        List<Long> orderIdList = new ArrayList<>();
+        orderIdList.add(20230717940L);
+        orderIdList.add(20230717941L);
+        AdminOrderOrderDto adminOrderOrderDto = new AdminOrderOrderDto("h1",  "taewan", orderIdList, "발주 확인");
+        int i = adminOrderDao.updateOrderMasterOrderDetailStatusAfterAdminOrderCheckBtn(adminOrderOrderDto);
         System.out.println("i = " + i);
     }
 }

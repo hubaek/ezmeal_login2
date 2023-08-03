@@ -3,11 +3,9 @@ package com.teamProject.ezmeal.controller;
 import com.teamProject.ezmeal.domain.PointTransactionHistoryDto;
 import com.teamProject.ezmeal.service.PointTransactionHistoryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -25,13 +23,14 @@ public class PointController {
     @GetMapping("/point")
     @ResponseBody
     public Map<String, Integer> getUsablePoint(HttpSession session) {
-        Long memberId = (Long) session.getAttribute("memberId");
-        int point = pointTransactionHistoryService.getUsablePoint(memberId);
+        Long memberID = (Long) session.getAttribute("memberId");
+        int point = pointTransactionHistoryService.getUsablePoint(memberID);
         Map<String , Integer> pointMap = new HashMap<>();
         pointMap.put("point", point);
         return pointMap;
     }
 
+    // 포인트 내역 조회 페이지
     @GetMapping("/mypage/point")
     public String getPointList(Model model, HttpSession session) {
         Long memberId =  (Long) session.getAttribute("memberId");
@@ -51,7 +50,5 @@ public class PointController {
         model.addAttribute("point",point);
         return "point";
     }
-
-
 
 }

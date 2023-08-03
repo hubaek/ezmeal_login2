@@ -1,5 +1,6 @@
 package com.teamProject.ezmeal.dao;
 
+import com.teamProject.ezmeal.domain.ProductDto;
 import com.teamProject.ezmeal.domain.ProductReviewDto;
 import com.teamProject.ezmeal.domain.ProductReviewTotalDto;
 import org.apache.ibatis.session.SqlSession;
@@ -100,8 +101,8 @@ public class ProductReviewDao {
     }
 
     /*또 만들게 있나? 리뷰...상품 리뷰... 아 리뷰객체 반환해야 후기글에 반복문 돌릴 수 있음.
-    *개별 상품에 대한 리뷰 묶음(공개-y,삭제-n)
-    *한 회원에 대한 리뷰묶음(배송완료 역순, 역순이란걸 어떻게 정하지...-> 책을 봐라.)*/
+     *개별 상품에 대한 리뷰 묶음(공개-y,삭제-n)
+     *한 회원에 대한 리뷰묶음(배송완료 역순, 역순이란걸 어떻게 정하지...-> 책을 봐라.)*/
 
 
     /*모든 상품들의 개별 리뷰 평점 */

@@ -1,5 +1,6 @@
 package com.teamProject.ezmeal.dao;
 
+import com.teamProject.ezmeal.domain.OrderMasterDto;
 import com.teamProject.ezmeal.domain.PaymentMasterDto;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;

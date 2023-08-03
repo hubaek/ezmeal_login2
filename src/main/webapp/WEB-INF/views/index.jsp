@@ -52,6 +52,7 @@
 <%--<div class="index_display_product">--%>
 <%--    <jsp:include page="index_display_product.jsp"/>--%>
 <%--</div>--%>
+
 <div class="index_footer">
     <jsp:include page="footer.jsp"/>
 </div>

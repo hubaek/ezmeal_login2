@@ -2,21 +2,15 @@ package com.teamProject.ezmeal.service;
 
 import com.teamProject.ezmeal.dao.*;
 import com.teamProject.ezmeal.domain.*;
-
-import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static java.lang.Integer.parseInt;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductService {
@@ -239,17 +233,17 @@ public class ProductService {
 
     /*관리자 상품 등록 메서드*/
     /*상품 1개와 옵션 리스트를 매개변수로 받는다. 이거 PK중요해서 트랜잭션 해야함
-     *optList size() == 0이면 바로 아래 로직.
-     *optList size() > 0이면 새 옵션 객체 만들기
-     *상품 변수로 생성. optList의 index 0번 으로 넣기
-     * -------------------------------
-     *상품에 prod_cd가 ==null이면 Insert하고 1 받기, pk받기(가장 큰수의 pK)
-     *prod_cd != null 이면 update하고 1받기. pk 꺼내기
-     *꺼낸 pk -> option에 setProd_cd() 해주기
-     *prod_cd로 찾은 optList랑 equals면 update / 아니면 insert
-     *옵션 update, insert 카운트 해주기. optUpdateCnt / optInsertCnt
-     *알려줄것들 Map(prodInsertCnt, prodUpdateCnt,optUpdateCnt, optInsertCnt)으로 반환
-     * */
+    *optList size() == 0이면 바로 아래 로직.
+    *optList size() > 0이면 새 옵션 객체 만들기
+    *상품 변수로 생성. optList의 index 0번 으로 넣기
+    * -------------------------------
+    *상품에 prod_cd가 ==null이면 Insert하고 1 받기, pk받기(가장 큰수의 pK)
+    *prod_cd != null 이면 update하고 1받기. pk 꺼내기
+    *꺼낸 pk -> option에 setProd_cd() 해주기
+    *prod_cd로 찾은 optList랑 equals면 update / 아니면 insert
+    *옵션 update, insert 카운트 해주기. optUpdateCnt / optInsertCnt
+    *알려줄것들 Map(prodInsertCnt, prodUpdateCnt,optUpdateCnt, optInsertCnt)으로 반환
+    * */
     public HashMap<String, Integer> prodAndOptionRegist(ProductDto productDto, List<ProductOptionDto> productOptionDtos) throws SQLException {
         Integer prodInsertCnt = 0;
         Integer prodUpdateCnt = 0;
@@ -267,7 +261,7 @@ public class ProductService {
             if(optListSize>0) {
                 /*상품정보로 낱개 옵션 만들기*/
                 prodOptOne = new ProductOptionDto(null, productDto.getDc_cd(), "낱개", "qty", 1,
-                        productDto.getCnsmr_prc(), productDto.getSale_prc(), productDto.getDc_rate(), productDto.getIn_id(), productDto.getUp_id());
+                                productDto.getCnsmr_prc(), productDto.getSale_prc(), productDto.getDc_rate(), productDto.getIn_id(), productDto.getUp_id());
                 /*옵션 List 0번째로 낱개 옵션 넣어주기*/
                 productOptionDtos.add(0, prodOptOne);
                 /*옵션 있을 때 일반 상품에서 소비자가, 판매가 없애기로 했음*/

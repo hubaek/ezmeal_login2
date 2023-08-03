@@ -1,6 +1,7 @@
 package com.teamProject.ezmeal.dao;
 
 import com.teamProject.ezmeal.domain.PointTransactionCodeDto;
+import com.teamProject.ezmeal.domain.PointTransactionHistoryDto;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;

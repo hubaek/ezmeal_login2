@@ -32,24 +32,24 @@
       </li>
 
       <c:forEach var="empl" items="${emplList}" varStatus="status">
-      <a href="/product/detail?cate_cd=05&prod_cd=${empl.prod_cd}">
-      <li class="health_prod_li">
-        <div class="prod_outer">
-          <c:set var="emplImg" value="${prodImgMap[empl.prod_cd]}" />
-          <figure>
-            <img src="/img/${productImage.url}.png">
-          </figure>
-          <div class="prod_text">
-            <span class="pord_name">${empl.name}</span>
-          </div>
-          <div class="prod_number">
-            <span class="dc_pt">${empl.dc_rate}%</span>
-            <span class="sale_prc">${empl.sale_prc}원</span>
-            <del class="cnsmr_prc">${empl.cnsmr_prc}원</del>
-          </div>
-        </div>
-      </li>
-      </a>
+        <a href="/product/detail?cate_cd=05&prod_cd=${empl.prod_cd}">
+          <li class="health_prod_li">
+            <div class="prod_outer">
+              <c:set var="emplImg" value="${prodImgMap[empl.prod_cd]}" />
+              <figure>
+                <img src="/img/${productImage.url}.png">
+              </figure>
+              <div class="prod_text">
+                <span class="pord_name">${empl.name}</span>
+              </div>
+              <div class="prod_number">
+                <span class="dc_pt">${empl.dc_rate}%</span>
+                <span class="sale_prc">${empl.sale_prc}원</span>
+                <del class="cnsmr_prc">${empl.cnsmr_prc}원</del>
+              </div>
+            </div>
+          </li>
+        </a>
       </c:forEach>
       <!-- prod_li 5번 반복 출력 -->
 
@@ -72,24 +72,24 @@
       </li>
 
       <c:forEach var="health" items="${healthList}" varStatus="status">
-      <a href="/product/detail?cate_cd=05&prod_cd=${health.prod_cd}">
-        <li class="health_prod_li">
-          <div class="prod_outer">
-            <c:set var="healthImg" value="${prodImgMap[health.prod_cd]}" />
-            <figure>
-              <img src="/img/${healthImg.url}.png">
-            </figure>
-            <div class="prod_text">
-              <span class="pord_name">${health.name}</span>
+        <a href="/product/detail?cate_cd=05&prod_cd=${health.prod_cd}">
+          <li class="health_prod_li">
+            <div class="prod_outer">
+              <c:set var="healthImg" value="${prodImgMap[health.prod_cd]}" />
+              <figure>
+                <img src="/img/${healthImg.url}.png">
+              </figure>
+              <div class="prod_text">
+                <span class="pord_name">${health.name}</span>
+              </div>
+              <div class="prod_number">
+                <span class="dc_pt">${health.dc_rate}%</span>
+                <span class="sale_prc">${health.sale_prc}원</span>
+                <del class="cnsmr_prc">${health.cnsmr_prc}원</del>
+              </div>
             </div>
-            <div class="prod_number">
-              <span class="dc_pt">${health.dc_rate}%</span>
-              <span class="sale_prc">${health.sale_prc}원</span>
-              <del class="cnsmr_prc">${health.cnsmr_prc}원</del>
-            </div>
-          </div>
-        </li>
-      </a>
+          </li>
+        </a>
       </c:forEach>
       <!-- prod_li 5번 반복 출력 -->
 
@@ -113,24 +113,24 @@
       </li>
 
       <c:forEach var="eat" items="${eatList}" varStatus="status">
-      <a href="/product/detail?cate_cd=05&prod_cd=${eat.prod_cd}">
-        <li class="health_prod_li">
-          <div class="prod_outer">
-            <c:set var="eatImg" value="${prodImgMap[eat.prod_cd]}" />
-            <figure>
-              <img src="/img/${eatImg.url}.png">
-            </figure>
-            <div class="prod_text">
-              <span class="pord_name">${eat.name}</span>
+        <a href="/product/detail?cate_cd=05&prod_cd=${eat.prod_cd}">
+          <li class="health_prod_li">
+            <div class="prod_outer">
+              <c:set var="eatImg" value="${prodImgMap[eat.prod_cd]}" />
+              <figure>
+                <img src="/img/${eatImg.url}.png">
+              </figure>
+              <div class="prod_text">
+                <span class="pord_name">${eat.name}</span>
+              </div>
+              <div class="prod_number">
+                <span class="dc_pt">${eat.dc_rate}%</span>
+                <span class="sale_prc">${eat.sale_prc}원</span>
+                <del class="cnsmr_prc">${eat.cnsmr_prc}원</del>
+              </div>
             </div>
-            <div class="prod_number">
-              <span class="dc_pt">${eat.dc_rate}%</span>
-              <span class="sale_prc">${eat.sale_prc}원</span>
-              <del class="cnsmr_prc">${eat.cnsmr_prc}원</del>
-            </div>
-          </div>
-        </li>
-      </a>
+          </li>
+        </a>
       </c:forEach>
       <!-- prod_li 5번 반복 출력 -->
 
@@ -154,25 +154,25 @@
       </li>
 
       <c:forEach var="home" items="${homeList}" varStatus="status">
-      <a href="/product/detail?cate_cd=05&prod_cd=${home.prod_cd}">
-        <li class="health_prod_li">
-          <div class="prod_outer">
-            <c:set var="homeImg" value="${prodImgMap[home.prod_cd]}" />
-            <figure>
-              <img src="/img/${homeImg.url}.png">
-            </figure>
-            <div class="prod_text">
-              <span class="pord_name">${home.name}</span>
+        <a href="/product/detail?cate_cd=05&prod_cd=${home.prod_cd}">
+          <li class="health_prod_li">
+            <div class="prod_outer">
+              <c:set var="homeImg" value="${prodImgMap[home.prod_cd]}" />
+              <figure>
+                <img src="/img/${homeImg.url}.png">
+              </figure>
+              <div class="prod_text">
+                <span class="pord_name">${home.name}</span>
+              </div>
+              <c:set var="optIndexZero" value="${prodOptMap[home.prod_cd].get(0)}" />
+              <div class="prod_number">
+                <span class="dc_pt">${optIndexZero.dc_rate}%</span>
+                <span class="sale_prc">${optIndexZero.sale_prc}원</span>
+                <del class="cnsmr_prc">${optIndexZero.cnsmr_prc}원</del>
+              </div>
             </div>
-            <c:set var="optIndexZero" value="${prodOptMap[home.prod_cd].get(0)}" />
-            <div class="prod_number">
-              <span class="dc_pt">${optIndexZero.dc_rate}%</span>
-              <span class="sale_prc">${optIndexZero.sale_prc}원</span>
-              <del class="cnsmr_prc">${optIndexZero.cnsmr_prc}원</del>
-            </div>
-          </div>
-        </li>
-      </a>
+          </li>
+        </a>
       </c:forEach>
       <!-- prod_li 5번 반복 출력 -->
 

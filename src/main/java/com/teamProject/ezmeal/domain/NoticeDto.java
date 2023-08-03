@@ -32,7 +32,7 @@ public class NoticeDto {
         this.stmt = stmt;
     }
 
-    public NoticeDto(Long notice_no, String writer, String title, String stmt, String  wrt_dt_format ){
+    public NoticeDto(Long notice_no,String writer, String title, String stmt, String  wrt_dt_format ){
         this.notice_no = notice_no;
         this.writer = writer;
         this.title = title;
