@@ -53,6 +53,11 @@ public class MemberService {
         }
     }
 
+    // 회원가입시 장바구니 번호 부여
+    public int registerCartSeq(Long memberId) {
+        return memberDao.insertCartSeq(memberId);
+    }
+
     public int removeMember(Long mbr_id) {   // MypageController 회원탈퇴하는 메서드
         // 로그인 중인 회원이 회원탈퇴를 한다.
         // 회원탈퇴할때 어떤 예외가 생길 수가 있을까..?

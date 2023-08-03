@@ -30,9 +30,16 @@ public class MemberDao {
         return session.selectOne(namespace+"selectMemberId", loginId);
     }
 
+    // 회원가입
     public int insertMember(MemberDto memberDto)  {    // 회원가입 resisterMember
         return session.insert(namespace + "insertMember", memberDto);
     }
+
+    // 회원가입시 장바구니 번호 부여
+    public int insertCartSeq(Long memberId) {
+        return session.insert(namespace + "insertCartSeq", memberId);
+    }
+
     public MemberDto selectMemberInfo(Long memberId)  {    // 회원정보 조회
         return session.selectOne(namespace + "selectMemberInfo", memberId);
     }
