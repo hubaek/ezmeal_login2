@@ -168,7 +168,6 @@ async function handleClickInvoiceBtn() {
             const dlvarVend = dlvarInfo.querySelector('select').value;
             console.log('dlvarVend' + dlvarVend);
             const invoiceNum = dlvarInfo.querySelector('input').value;
-            console.log('dlvarVend' + dlvarVend);
             console.log('invoiceNum' + invoiceNum);
             if (dlvarVend === '' || invoiceNum === '' || dlvarFee === '') validationNum++; // 임시 검증. 빈 값일 경우 숫자 넣어줌
             // 객체 생성 및 배열에 추가
@@ -209,6 +208,14 @@ async function handleBundleUpdate(event) {
     console.log('--------------handleBundleUpdate 끝-----------------');
 }
 
+async function handleClickDeliveryShipping() {
+    console.log('-------------------------------');
+    console.log('--------------handleClickDeliveryShipping 시작-----------------');
+    await handleClickAdminDeliveryBtn('/admin/delivery/shipping','/admin/delivery',SELECT_SEQ_LIST, '배송중 등록 완료');
+    console.log('--------------handleClickDeliveryShipping 끝-----------------');
+
+}
+
 /* EVENT 함수 */
 
 // 처음 html loading 후, 바로 수행되는 함수, html 문서 load 된 후 실행되는 js 함수
@@ -232,6 +239,7 @@ bndlAllBtn.addEventListener('click',
 );
 
 addInvoiceNum.addEventListener("click", handleClickInvoiceBtn); // 송장번호 등록 btn
+checkDeliveryShipping.addEventListener('click', handleClickDeliveryShipping); // 배송중 등록 btn
 
 /* 객체 */
 

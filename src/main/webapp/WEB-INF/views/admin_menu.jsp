@@ -83,7 +83,10 @@
             </a>
 
             <li class="member main_li" id="member"><i class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;고객</li>
-            <a href="홈페이지_주소">
+            <a href="/admin/member">
+                <li class="hidden member_li sub_li">회원 대시보드</li>
+            </a>
+            <a href="/admin/member/info">
                 <li class="hidden member_li sub_li">회원정보 조회</li>
             </a>
             <a href="홈페이지_주소">
@@ -109,6 +112,9 @@
             <li class="board main_li" id="board"><i class="fas fa-clipboard"></i>&nbsp;&nbsp;&nbsp;&nbsp;게시판</li>
             <a href="홈페이지_주소">
                 <li class="hidden board_li sub_li">게시판 대시보드</li>
+            </a>
+            <a href="/admin/notice/write">
+                <li class="hidden board_li sub_li">공지사항 등록</li>
             </a>
             <a href="홈페이지_주소">
                 <li class="hidden board_li sub_li">공지게시판 관리</li>

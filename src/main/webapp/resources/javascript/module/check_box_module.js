@@ -58,7 +58,11 @@ const selectProduct = function (event, sequenceTag, sequenceName) {
 
 // 전체 상품 선택 함수 - 묶음 선택
 const selectAllBNDL = function (sequenceName) {
+    console.log('-----------------------');
+    console.log('selectAllBNDL');
     const check = bndlAllBtn.checked; // true, false(default)
+    console.log('bndlBtns');
+    console.log(bndlBtns);
 
     bndlBtns.forEach((bndlBtn) => {
         if (bndlBtn === null) {
@@ -108,9 +112,11 @@ const selectBNDL = function (event, sequenceName) {
 const selectInit = function () {
     SELECT_SEQ_LIST = []; // 선택된 발주 버튼
     dynamicNum = 0; // 체크박스 선택 수 확인
+    selectAllBtn.checked = false; // 전체 선택 초기화
 }
 
 const dlvarInit = function () {
     DLVAR_SEQ_LIST = []; // 선택된 묶음 checkbox의 dlvr_id list
     DLVAR_DYNAMIC_NUM = 0; // 묶음 선택 수 확인
+    bndlAllBtn.checked = false; // 전체 선택 초기화
 }
