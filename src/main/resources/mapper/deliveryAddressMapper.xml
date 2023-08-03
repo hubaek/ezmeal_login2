@@ -31,8 +31,8 @@
         SELECT *
         FROM tb_delivery_address
         WHERE mbr_id = #{mbrId}
-        AND (select_yn = 'y' OR (select_yn &lt;&gt; 'y' AND basic_yn = 'y' AND
-        NOT EXISTS (SELECT * FROM tb_delivery_address WHERE mbr_id = #{mbrId} AND select_yn = 'y')))
+          AND (select_yn = 'y' OR (select_yn &lt;&gt; 'y' AND basic_yn = 'y' AND
+                                   NOT EXISTS (SELECT * FROM tb_delivery_address WHERE mbr_id = #{mbrId} AND select_yn = 'y')))
     </select>
     <!-- insert
      1) parameterType의 객체를 받아오고

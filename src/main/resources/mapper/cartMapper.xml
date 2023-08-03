@@ -11,8 +11,8 @@
         where mbr_id = #{mbrId};
     </select>
 
-<!--    TODO insert 시, 장바구니 자동 생성 -->
-<!--    <insert id="insert">-->
-<!--        insert into tb_cart-->
-<!--    </insert>-->
+    <!--    TODO insert 시, 장바구니 자동 생성 -->
+    <!--    <insert id="insert">-->
+    <!--        insert into tb_cart-->
+    <!--    </insert>-->
 </mapper>
