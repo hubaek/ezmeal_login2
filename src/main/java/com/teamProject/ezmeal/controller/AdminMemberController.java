@@ -21,17 +21,17 @@ public class AdminMemberController {
 
     private final AdminMemberService adminMemberService;
 
+
+    // 회원대시보드 페이지 조회
+    @GetMapping("/admin/member")
+    public String  getAdminMemberMain() {
+        return "admin_member_main";
+    }
+
     // 회원정보조회 페이지 조회
     @GetMapping("/admin/member/info")
     public String getMemberInfo() {
         return "admin_member_info";
-    }
-
-    // 임시용 전체 조회
-    @GetMapping("/admin/member")
-    @ResponseBody
-    public List<Map<String, Object>> getmember() {
-        return adminMemberService.getMemberList();
     }
 
     // 조건에 맞는 회원정보 조회
