@@ -24,17 +24,17 @@
       <div class="signupSuccess-area">
         <div class="area">
           <div class="areamenu">아이디</div>
-          <div class="areavalue">${memberDto.lgin_id}</div>
+          <div class="areavalue">${loginMbrInfo.lgin_id}</div>
         </div>
 
         <div class="area">
           <div class="areamenu">이름</div>
-          <div class="areavalue">${memberDto.name}</div>
+          <div class="areavalue">${loginMbrInfo.name}</div>
         </div>
 
         <div class="area">
           <div class="areamenu">이메일</div>
-          <div class="areavalue">${memberDto.email}</div>
+          <div class="areavalue">${loginMbrInfo.email}</div>
         </div>
 
         <div class="button-area">
