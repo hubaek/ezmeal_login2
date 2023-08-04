@@ -64,7 +64,8 @@
                  ,#{lgin_pw}
                  )
     </insert>
-    
+
+    <!--  회원가입시 장바구니 번호 부여 쿼리  -->
     <insert id="insertCartSeq" parameterType="Long">
         INSERT INTO tb_cart (
                              mbr_id
