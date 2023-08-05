@@ -20,7 +20,7 @@
 
     <!--  조건없는 회원목록 전체 조회  -->
     <select id="selectMemberList" resultType="map">
-        SELECT DATE_FORMAT(m.in_dtm, '%Y-%m-%d') as in_dtm, m.name, m.lgin_id, g.name as mbr_grd_name, m.phone, m.gender, m.birth
+        SELECT DATE_FORMAT(m.in_dtm, '%Y-%m-%d') as in_dtm, m.name, m.lgin_id, g.name as mbr_grd_name, m.phone, m.gender, m.birth, count(*) over() as member_count
         FROM TB_MEMBER m, TB_MEMBER_GRADE g
         WHERE m.mbr_grd = g.mbr_grd_cd
     </select>
