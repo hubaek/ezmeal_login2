@@ -76,7 +76,7 @@
           <div class="left">
             <p class="total">
               [총 회원수
-              <strong>{n}</strong>
+              <strong>${memberCount}</strong>
               명] 검색결과
               <strong>{n}</strong>
               건

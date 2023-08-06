@@ -30,7 +30,14 @@ public class AdminMemberController {
 
     // 회원정보조회 페이지 조회
     @GetMapping("/admin/member/info")
-    public String getMemberInfo() {
+    public String getMemberInfo(Model model) {
+        List<Map<String, Object>> memberList = adminMemberService.getMemberList();
+        if (!(memberList.isEmpty())) {
+            Map<String, Object> memberMap = memberList.get(0);
+            int memberCount = (int)memberMap.get("member_count");
+            System.out.println("memberCount = " + memberCount);
+            model.addAttribute("memberCount", memberCount);
+        }
         return "admin_member_info";
     }
 
