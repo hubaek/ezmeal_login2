@@ -1,6 +1,7 @@
 package com.teamProject.ezmeal.service;
 
 import com.teamProject.ezmeal.dao.ProductReviewDao;
+import com.teamProject.ezmeal.domain.ProductReviewDto;
 import com.teamProject.ezmeal.domain.ProductReviewTotalDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,6 +59,10 @@ public Map<Long,Object> selectReviewAvgAllProduct() {
     }
 
 
-
+    // taewan
+    /*리뷰 생성하기*/
+    public Integer writeReviewFromOrderDetail(ProductReviewDto productReviewDto) {
+        return productReviewDao.insertReviewFromOrderDetail(productReviewDto);
+    }
 
 }

@@ -1,8 +1,10 @@
 package com.teamProject.ezmeal.controller;
 
 import com.teamProject.ezmeal.domain.MemberDto;
+import com.teamProject.ezmeal.service.LoginService;
 import com.teamProject.ezmeal.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -84,7 +87,7 @@ public class MypageController {
                 memberService.modifyMember(memberDto);
                 model.addAttribute("modifyMsg","수정되었습니다.");
 //                rattr.addFlashAttribute("modifyMsg","수정되었습니다.");
-                return "mypage";
+                return "redirect:/mypage/modify";
             }
 
         } catch (Exception e) {

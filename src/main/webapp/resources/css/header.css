@@ -26,6 +26,7 @@ a {
   align-items: center;
 }
 
+/*ez배송 */
 .logo-box {
   display: flex;
   align-items: center;
@@ -42,6 +43,19 @@ a {
   margin-bottom: 10px;
 }
 
+/*검색창 box*/
+.search_box {
+  position: relative;
+  width: 300px;
+  height: 48px;
+  padding: 6px 14px;
+  border: 1px solid #65d674;
+  border-radius: 6px;
+  font-size: 16px;
+  line-height: 30px;
+  letter-spacing: -0.3px;
+}
+
 .search_box {
   position: relative; /* 추가 */
   width: 300px;
@@ -56,10 +70,10 @@ a {
 
 .search_inner_box {
   position: absolute;
-  width: 100%; /* 추가 */
+  width: 80%; /* 추가 */
   height: 30px;
   line-height: 30px; /* 추가 */
-  left: 0; /* 추가 */
+  left: 20px; /* 추가 */
   top: 50%; /* 추가 */
   transform: translateY(-50%); /* 추가 */
   border-style: none;
@@ -81,8 +95,6 @@ a {
   outline: none;
 }
 
-
-
 .search-btn svg {
   fill: rgb(179, 180, 182);
   display: block;
@@ -98,6 +110,7 @@ a {
   color: rgb(0, 199, 40); /* 초기 색상 */
   transition: color 0.3s ease; /* 색상 변화에 대한 트랜지션 효과 */
 }
+
 
 /*start : 아이콘(user, wishlist,cart)*/
 .icon_box {

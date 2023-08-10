@@ -11,6 +11,9 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/css/screens/notice_list_div.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -66,31 +69,70 @@
     <div class="pagination">
 
 
+<%--        <script type="text/javascript">--%>
+<%--            //<![CDATA[--%>
+<%--            function CmPageMove( pg , size ) {--%>
+<%--                var frm     = document.frm;--%>
+<%--                frm["nowPageNo"].value	= pg;--%>
+
+<%--                if (size != undefined) {--%>
+<%--                    frm["pageSize"].value	= size;--%>
+<%--                }--%>
+
+<%--                frm.submit();--%>
+<%--            }--%>
+<%--            //]]>--%>
+<%--        </script>--%>
+<%--        <div class="pagehandler_noticelist">--%>
+<%--            <div class="page_number_list">--%>
+<%--                    <c:if test="${ph.isShowPrev()}">--%>
+<%--                        <a class="page_number" href="<c:url value="/notice?page=${ph.getBeginPage()-1}"/>"><</a>--%>
+<%--                    </c:if>--%>
+<%--                    <c:forEach var="i" begin="${ph.getBeginPage()}" end="${ph.getEndPage()}">--%>
+<%--                        <a class="page_number ${i==ph.getPage()? "page_number_active" : ""}" href="<c:url value="/notice?page=${i}&pageSize=10"/>">${i}</a>--%>
+<%--                    </c:forEach>--%>
+<%--                    <c:if test="${ph.isShowNext()}">--%>
+<%--                        <a class="page_number" href="<c:url value="/notice?page=${ph.endPage+1}"/>">></a>--%>
+<%--                    </c:if>--%>
+
+    <div class="pagination">
         <script type="text/javascript">
             //<![CDATA[
-            function CmPageMove( pg , size ) {
-                var frm     = document.frm;
-                frm["nowPageNo"].value	= pg;
+            function CmPageMove(pg, size) {
+                var frm = document.frm;
+                frm["nowPageNo"].value = pg;
 
                 if (size != undefined) {
-                    frm["pageSize"].value	= size;
+                    frm["pageSize"].value = size;
                 }
 
                 frm.submit();
             }
-            //]]>
+
         </script>
-        <div class="pagging-wrap page-area">
-            <div class="page-number">
-                    <c:if test="${ph.isShowPrev()}">
-                        <a class="page" href="<c:url value="/notice?page=${ph.getBeginPage()-1}"/>"><</a>
-                    </c:if>
-                    <c:forEach var="i" begin="${ph.getBeginPage()}" end="${ph.getEndPage()}">
-                        <a class="page ${i==ph.getPage()? "paging-active" : ""}" href="<c:url value="/notice?page=${i}&pageSize=10"/>">${i}</a>
-                    </c:forEach>
-                    <c:if test="${ph.isShowNext()}">
-                        <a class="page" href="<c:url value="/notice?page=${ph.endPage+1}"/>">></a>
-                    </c:if>
+        <div class="pagehandler_noticelist">
+            <div class="page_number_list">
+                <c:if test="${ph.getPage() != 1}">
+                    <a class="page_number" href="<c:url value='/notice?page=1'/>"><<</a>
+                </c:if>
+                <c:if test="${ph.isShowPrev()}">
+                    <a class="page_number" href="<c:url value='/notice?page=${ph.getBeginPage() - 1}'/>"><</a>
+                </c:if>
+                <c:forEach var="i" begin="${ph.getBeginPage()}" end="${ph.getEndPage()}">
+                    <a class="page_number ${i == ph.getPage() ? 'page_number_active' : ''}" href="<c:url value='/notice?page=${i}&pageSize=10'/>">${i}</a>
+                </c:forEach>
+                <c:if test="${ph.isShowNext()}">
+                    <a class="page_number" href="<c:url value='/notice?page=${ph.getEndPage() + 1}'/>">></a>
+                </c:if>
+                <c:if test="${ph.getPage() != ph.getTotalPage()}">
+                    <a class="page_number" href="<c:url value='/notice?page=${ph.getTotalPage()}'/>">>></a>
+                </c:if>
+            </div>
+        </div>
+    </div>
+
+
+
 
 
 <%--                <ul class="page_list_num_ul">--%>

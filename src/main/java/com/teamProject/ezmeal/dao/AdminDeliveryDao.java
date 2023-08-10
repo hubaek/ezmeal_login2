@@ -6,7 +6,6 @@ import com.teamProject.ezmeal.domain.restAPIDomain.InvoiceDeliveryFeeInfo;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;

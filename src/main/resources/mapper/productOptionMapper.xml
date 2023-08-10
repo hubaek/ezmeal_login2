@@ -10,8 +10,8 @@
         FROM tb_product_option AS opt
                  INNER JOIN tb_product AS pd ON opt.prod_cd = pd.prod_cd
         WHERE opt.use_yn = 'y' AND opt.del_yn ='n'
-              AND pd.cate_cd LIKE concat(#{cate_cd}, '%')  AND pd.sale_yn='y'
-              AND pd.dp_yn='y' AND pd.del_yn='n' AND pd.prod_stus IN (1,2)
+          AND pd.cate_cd LIKE concat(#{cate_cd}, '%')  AND pd.sale_yn='y'
+          AND pd.dp_yn='y' AND pd.del_yn='n' AND pd.prod_stus IN (1,2)
     </select>
 
     <!-- 옵션 y -> 상세페이지에서 보여줄 떄?  -->

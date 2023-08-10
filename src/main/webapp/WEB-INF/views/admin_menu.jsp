@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>ezmeal_admin</title>
+
     <link rel="stylesheet" href="/css/screens/admin_menu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
@@ -18,7 +18,7 @@
         <ul id="menu_list">
 
             <a href="/admin">
-                <li class="main_li">
+                <li class="main_li home_main_li" id="home">
                     <i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;홈
                 </li>
             </a>
@@ -57,7 +57,7 @@
 
 
             <li class="prod main_li" id="prod"><i class="fas fa-boxes"></i>&nbsp;&nbsp;상품</li>
-            <a href="/admin/prod">
+            <a href="/admin/prod/home">
                 <li class="hidden prod_li sub_li">상품 대시보드</li>
             </a>
             <a href="/admin/prod/list">
@@ -78,7 +78,7 @@
             <a href="/admin/prod/dccd">
                 <li class="hidden prod_li sub_li">상품 할인코드 관리</li>
             </a>
-            <a href="홈페이지_주소">
+            <a href="/admin/prod/cust">
                 <li class="hidden prod_li sub_li">거래처 관리</li>
             </a>
 
@@ -110,7 +110,7 @@
 
 
             <li class="board main_li" id="board"><i class="fas fa-clipboard"></i>&nbsp;&nbsp;&nbsp;&nbsp;게시판</li>
-            <a href="홈페이지_주소">
+            <a href="/admin/notice/dashboard">
                 <li class="hidden board_li sub_li">게시판 대시보드</li>
             </a>
             <a href="/admin/notice/write">
@@ -162,7 +162,7 @@
                         submenuItems[j].classList.add('hidden');
                     }
                 }
-                e.preventDefault(); //상위 메뉴 클릭시 페이지 전환 방지
+                if (targetElement.id != "home") e.preventDefault();  //상위 메뉴 클릭시 페이지 전환 방지
             }
         });
 

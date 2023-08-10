@@ -1,19 +1,15 @@
 package com.teamProject.ezmeal.dao;
 
 import com.teamProject.ezmeal.domain.ProductDiscountDto;
-import com.teamProject.ezmeal.domain.ProductDto;
-import com.teamProject.ezmeal.domain.ProductOptionDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+
 @Repository
 public class ProductDiscountDao {
 

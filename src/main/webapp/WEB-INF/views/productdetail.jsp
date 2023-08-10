@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: hhju2
@@ -11,7 +12,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>상품 상세 페이지</title>
+  <title>ezmeal</title>
   <link rel="stylesheet" href="/css/screens/productdetail.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,22 +33,36 @@
   <div class="head_main_left">
 
     <!-- 메인 이미지 -->
-    <c:forEach var="img" items="${imgList}" varStatus="status">
-      <c:if test="${img.typ=='대표'}">
-        <img class="main_img" src="../img/${not empty img.url ? img.url : 'ezmeal_logo'}.png"  id="main_img"/>
-      </c:if>
-    </c:forEach>
-
+    <c:choose>
+      <c:when test="${not empty imgList}">
+        <c:forEach var="img" items="${imgList}" varStatus="status">
+          <c:if test="${img.typ=='대표'}">
+            <img class="main_img" src="/img/${img.url}" id="main_img"/>
+          </c:if>
+        </c:forEach>
+      </c:when>
+      <c:otherwise>
+        <img class="main_img" src="/img/ezmeal_logo.png" id="main_img"/>
+      </c:otherwise>
+    </c:choose>
 
     <!-- 미니 이미지 -->
     <ul class="mini_img_set">
-      <c:forEach var="img" items="${imgList}" varStatus="status">
-        <c:if test="${img.typ=='메인' and status.index < 5}">
-          <img class="mini_img 메인" src="../img/${not empty img.url ? img.url : 'ezmeal_logo'}.png" />
-        </c:if>
+      <c:forEach varStatus="status" begin="1" end="5">
+        <c:choose>
+          <c:when test="${not empty imgList and status.count <= imgList.size()}">
+            <c:set var="img" value="${imgList[status.count-1]}" />
+            <c:if test="${img.typ=='메인'}">
+              <img class="mini_img 메인" src="../img/${img.url}" id="mini_img_${status.count}"/>
+<%--              <img class="mini_img 메인" src="../img/${img.url}.png" id="mini_img_${status.count}"/>--%>
+            </c:if>
+          </c:when>
+          <c:otherwise>
+            <img class="mini_img 메인" src="../img/ezmeal_logo.png" id="mini_img_${status.count}"/>
+          </c:otherwise>
+        </c:choose>
       </c:forEach>
     </ul>
-    <div class="main_left 아래 여백"></div>
 
 <%--    <c:forEach var="img" items="${imgList}" varStatus="status">--%>
 <%--      <c:if test="${img.typ=='대표'}">--%>
@@ -96,7 +111,8 @@
             <strong class="dc_pt">${optList.get(0).getDc_rate()}%</strong>
           </c:if>
 
-          <strong class="sale_prc">${sale_prc}&nbsp;원</strong>
+          <strong class="sale_prc"><fmt:formatNumber value="${sale_prc}" type="number" pattern="#,##0"/>원</strong>
+<%--          <strong class="sale_prc">${sale_prc}&nbsp;원</strong>--%>
 
           <c:if test="${cnsmr_prc != sale_prc}">
             <del class="cnsmr_prc">${cnsmr_prc}&nbsp;원</del>
@@ -110,8 +126,8 @@
           <c:if test="${cnsmr_prc != sale_prc}">
             <strong class="dc_pt">${product.getDc_rate()}%</strong>
           </c:if>
-
-          <strong class="sale_prc">${sale_prc}&nbsp;원</strong>
+          <strong class="sale_prc"><fmt:formatNumber value="${sale_prc}" type="number" pattern="#,##0"/>원</strong>
+<%--          <strong class="sale_prc">${sale_prc}&nbsp;원</strong>--%>
 
           <c:if test="${cnsmr_prc != sale_prc}">
             <del class="cnsmr_prc">${cnsmr_prc}&nbsp;원</del>
@@ -135,7 +151,30 @@
         </tr>
         <tr>
           <th>추가혜택</th>
-          <td>증정품 : 불닭소스</td>
+          <c:set var="cate_cd" value="${product.getCate_cd()}" />
+            <c:choose>
+              <c:when test="${cate_cd.contains('010') || cate_cd.contains('020')}">
+                <td>증정품 : 불닭소스 200g</td>
+              </c:when>
+              <c:when test="${cate_cd.contains('030')}">
+                <td>증정품 : 참깨소스 200g</td>
+              </c:when>
+              <c:when test="${cate_cd.contains('040')}">
+                <td>증정품 : 이지밀 펭귄 포크세트</td>
+              </c:when>
+              <c:when test="${cate_cd.contains('050')}">
+                <td>증정품 : 모짜렐라치즈 200g</td>
+              </c:when>
+              <c:when test="${cate_cd.contains('06')}">
+                <td>증정품 : 미니도시락 세트</td>
+              </c:when>
+              <c:when test="${cate_cd.contains('07')}">
+                <td>증정품 : 미니 샐러드 200g</td>
+              </c:when>
+              <c:otherwise>
+                <td>증정품 : 정보가 없습니다.</td>
+              </c:otherwise>
+            </c:choose>
         </tr>
         <tr>
           <th>보관방법</th>
@@ -229,9 +268,11 @@
     <li class="detail_navi"><a href="#section4">상품문의</a></li>
   </ul>
   <c:forEach var="img" items="${imgList}">
-    <c:if test="${img.typ=='상세'}">
-      <img class="detail_img" src="../ezmeal/"${img.url}".png">
-    </c:if>
+    <div class="image-container">
+      <c:if test="${img.typ=='상세'}">
+        <img class="detail_img" src="/img/${img.url}" alt="Image">
+      </c:if>
+    </div>
   </c:forEach>
 
 </div>
@@ -284,37 +325,37 @@
 </div>
 
 <!--------------------------------------  상품후기 (내용)  --------------------------------------------->
-<c:forEach var="review" items="${reviewList}">
+<c:forEach var="review" items="${reviewList}" varStatus="status">
   <ul class="rv_container">
     <li class="rv_set">
       <span class="rv_wrt">${review.writer}</span>
       <span class="rv_wrt_dt">${review.wrt_dt}</span>
       <span class="rv_star">${'★'.repeat(review.star)}</span>
-      <span class="rv_kword">여기 키워드리뷰.... 가져와야서 반복출력...</span>
+<%--      <span class="rv_kword">여기 키워드리뷰.... 가져와야서 반복출력...</span>--%>
       <span class="rv_title">${review.title}</span>
       <span class="rv_stmt">${review.stmt}</span>
-      <span class="rv_img"><img src="../../img/P005.png" width="100px" height="100px" id="img01"></span>
+      <span class="rv_img"><img src="/img/${review.prod_cd}_${status.index}.png" width="100px" height="100px" id="img01"></span>
     </li>
   </ul>
 </c:forEach>
 
 
-<ul class="rv_container">
-  <li class="rv_set">
-    <span class="rv_wrt">강*바</span>
-    <span class="rv_wrt_dt">2023.06.12.</span>
-    <span class="rv_star">★★★★★</span>
-    <span class="rv_kword">가성비 굿</span>
-    <span class="rv_title">맛있어요</span>
-    <span class="rv_stmt">또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.
-                        또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.
-                        또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.
-                    </span>
-    <span class="rv_img"><img src="../../img/G005.png" width="100px" height="100px" id="img02"></span>
+<%--<ul class="rv_container">--%>
+<%--  <li class="rv_set">--%>
+<%--    <span class="rv_wrt">강*바</span>--%>
+<%--    <span class="rv_wrt_dt">2023.06.12.</span>--%>
+<%--    <span class="rv_star">★★★★★</span>--%>
+<%--&lt;%&ndash;    <span class="rv_kword">가성비 굿</span>&ndash;%&gt;--%>
+<%--    <span class="rv_title">맛있어요</span>--%>
+<%--    <span class="rv_stmt">또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.--%>
+<%--                        또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.--%>
+<%--                        또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.또 먹고 싶어요 추천합니다.--%>
+<%--                    </span>--%>
+<%--    <span class="rv_img"><img src="../../img/4.png" width="100px" height="100px" id="img02"></span>--%>
 
-  </li>
+<%--  </li>--%>
 
-</ul>
+<%--</ul>--%>
 
 <!---------------------------------  상품문의  (상단)  ----------------------------------------------------->
 <div class="hidden_navi_div"  id="section4"></div>
@@ -423,27 +464,12 @@
 </div>
 
 <!------------------------------------- 자바스크립트 ------------------------------------------->
-<script>
-  window.onload = function() {
-    /*페이지 로드 시 */
-    makeReviewAvgStarImg();   /*리뷰 별점 이미지 출력*/
-    imgFunction();   /*이미지 교체 기능 넣기*/
-    updatePrice();   /*기본으로 가격 업데이트*/
-    changeMainImage(document.getElementById("main_img"))
-
-    /*선택한 옵션으로 바로 가격 바뀌도록*/
-    let optSelect = document.getElementById("opt_select");
-
-    optSelect.addEventListener('change', function() {
-      updatePrice();
-    });
-
-  }
-</script>
-<script src="/javascript/productdetail.js"></script>
-<script src="/javascript/productdetailoption.js"></script>
-<script src="/javascript/productdetail_img_and_order.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<%--<script src="/javascript/productdetailoption.js"></script>--%>
+<%--<script src="/javascript/productdetail_img_and_order.js"></script>--%>
+<%--<script src="/javascript/productdetail.js"></script>--%>
+<script src="/javascript/productDetailCombined.js"></script>
+
 <script>
   src="https://kit.fontawesome.com/6478f529f2.js"
   crossOrigin="awesome"

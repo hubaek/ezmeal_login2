@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.teamProject.ezmeal.dao.NoticeDao" %><%--
   Created by IntelliJ IDEA.
   User: lee nakyeong
@@ -8,8 +9,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>ezmeal | 공지사항 상세</title>
    <link rel="stylesheet" href="/css/screens/notice_stmt.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -37,9 +41,14 @@
                 <td class="notice-board-explain">${notice.wrt_dt_format}</td>
             </tr>
             <tr>
-                <td class="notice-board-title"></td>
+                <td class="notice-board-title">작성 내용</td>
                 <td class="notice-board-explain">
-                    <img src="/img/notice1.jpg" class="notice_img">
+                    <c:if test="${notice.notice_no eq 110}">
+                        <img src="/img/ezDeliveryNotice.jpeg">
+                    </c:if>
+                    <c:if test="${notice.notice_no != 110}">
+                        <img src="/img/ezmeal_notice_img.jpeg">
+                    </c:if>
                 </td>
             </tr>
         </table>

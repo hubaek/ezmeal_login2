@@ -24,10 +24,10 @@
     <!--상품 등록 페이지에서 같이 생성  -> 상품코드 매개변수로 받겠다 아 이미 정보 받아서 객체로 오겠네-->
     <insert id="insert_product_inventory" parameterType="ProductInventoryDto">
         INSERT INTO tb_product_inventory
-                (prod_cd, curr_inv, safe_inv, last_gr_dt, gr_dura_dt, use_yn, del_yn,
-                rmk, in_dtm, in_id, up_dtm, up_id)
+        (prod_cd, curr_inv, safe_inv, last_gr_dt, gr_dura_dt, use_yn, del_yn,
+         rmk, in_dtm, in_id, up_dtm, up_id)
         VALUES ( #{prod_cd}, #{curr_inv}, #{safe_inv}, #{last_gr_dt}, #{gr_dura_dt}, #{use_yn}, #{del_yn},
-                #{rmk}, now(), 'ateam', now(), 'ateam' )
+                 #{rmk}, now(), 'ateam', now(), 'ateam' )
     </insert>
 
     <!--상품코드로 재고관리 로우 하나 찾는 것도 필요해!-->
@@ -53,8 +53,8 @@
 
     <!--관리자 페이지) 재고 상황 변경하는 update문(반복은 서비스에서...)-->
     <update id="update_product_inventory">
-            UPDATE tb_product_inventory
-            SET curr_inv=#{curr_inv},
+        UPDATE tb_product_inventory
+        SET curr_inv=#{curr_inv},
             safe_inv=#{safe_inv},
             last_gr_dt=#{last_gr_dt},
             gr_dura_dt=#{gr_dura_dt},
@@ -63,26 +63,26 @@
             rmk=#{rmk},
             up_dtm=now(),
             up_id='ateam'
-            WHERE prod_cd=#{prod_cd}
+        WHERE prod_cd=#{prod_cd}
     </update>
 
 
-<!--    &lt;!&ndash;관리자 페이지) 재고 상황 변경하는 update문(반복)&ndash;&gt;-->
-<!--    <update id="update_all_product_inventory" parameterType="java.util.List">-->
-<!--        <foreach collection="list" item="product_inv" separator=";">-->
-<!--            UPDATE tb_product_inventory-->
-<!--            SET curr_inv=#{product_inv.curr_inv},-->
-<!--            safe_inv=#{product_inv.safe_inv},-->
-<!--            last_gr_dt=#{product_inv.last_gr_dt},-->
-<!--            gr_dura_dt=#{product_inv.gr_dura_dt},-->
-<!--            use_yn=#{product_inv.use_yn},-->
-<!--            del_yn=#{product_inv.del_yn},-->
-<!--            rmk=#{product_inv.rmk},-->
-<!--            up_dtm=now(),-->
-<!--            up_id='ateam'-->
-<!--            WHERE prod_cd=#{product_inv.prod_cd}-->
-<!--        </foreach>-->
-<!--    </update>-->
+    <!--    &lt;!&ndash;관리자 페이지) 재고 상황 변경하는 update문(반복)&ndash;&gt;-->
+    <!--    <update id="update_all_product_inventory" parameterType="java.util.List">-->
+    <!--        <foreach collection="list" item="product_inv" separator=";">-->
+    <!--            UPDATE tb_product_inventory-->
+    <!--            SET curr_inv=#{product_inv.curr_inv},-->
+    <!--            safe_inv=#{product_inv.safe_inv},-->
+    <!--            last_gr_dt=#{product_inv.last_gr_dt},-->
+    <!--            gr_dura_dt=#{product_inv.gr_dura_dt},-->
+    <!--            use_yn=#{product_inv.use_yn},-->
+    <!--            del_yn=#{product_inv.del_yn},-->
+    <!--            rmk=#{product_inv.rmk},-->
+    <!--            up_dtm=now(),-->
+    <!--            up_id='ateam'-->
+    <!--            WHERE prod_cd=#{product_inv.prod_cd}-->
+    <!--        </foreach>-->
+    <!--    </update>-->
 
 
     <!--재고 찐 삭제-->

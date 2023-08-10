@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: hhju2
@@ -11,7 +12,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>카테고리 별 상품 목록</title>
+  <title>ezmeal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap" rel="stylesheet">
@@ -48,10 +49,10 @@
     <div class="prod_outer"  data-prod-idx="${status.index}">
       <!--------------------------------------------------------------------------------------------->
       <figure class="prod_top top_figure">
-        <a href="/product/detail?cate_cd=05&prod_cd=${prod.getProd_cd()}"> <!--상품 대표 이미지-->
+        <a href="/product/detail?prod_cd=${prod.getProd_cd()}"> <!--상품 대표 이미지-->
             <c:set var="productImage" value="${prodImgMap[prod.prod_cd]}"/>
             <img id="prod_top top_img"
-                 src="/img/${productImage != null ? productImage.url : 'ezmeal_logo'}.png"/>
+                 src="/img/${productImage != null ? productImage.url : 'ezmeal_logo.png'}"/>
 <%--               src="/img/${empty productImg ? 'ezmeal_logo' : productImg}.png"/>--%>
         </a>
 
@@ -114,8 +115,11 @@
 
                   <!--판매 가격-->
                   <span class="sale_prc">
-                          <strong>${sale_prc_opt}</strong>원
+                          <strong><fmt:formatNumber value="${sale_prc_opt}" type="number" pattern="#,##0"/> </strong>원
                   </span>
+<%--                  <span class="sale_prc">--%>
+<%--                          <strong>${sale_prc_opt}</strong>원--%>
+<%--                  </span>--%>
 
                   <!--소비자 가격-->
                   <c:if test="${cnsmr_prc_opt != sale_prc_opt}">
@@ -127,16 +131,25 @@
                 </c:when>
                 <c:otherwise> <!--옵션 없을 때----------------------------------------------->
 
+                      <c:set var="cnsmr_prc" value="${prod.getCnsmr_prc()}" />
+                      <c:set var="sale_prc" value="${prod.getSale_prc()}" />
+
+
                   <!--할인 퍼센트-->
-                  <span class="dc_cd">
-                        <strong>${prod.getDc_rate()}</strong>%
-                  </span>
+                  <c:if test="${cnsmr_prc != sale_prc}">
+                      <span class="dc_cd">
+                            <strong>${prod.getDc_rate()}</strong>%
+                      </span>
+                  </c:if>
 
 
                   <!--판매 가격-->
                   <span class="sale_prc">
-                        <strong>${prod.getSale_prc()}</strong>원
+                          <strong><fmt:formatNumber value="${prod.getSale_prc()}" type="number" pattern="#,##0"/> </strong>원
                   </span>
+<%--                  <span class="sale_prc">--%>
+<%--                        <strong>${prod.getSale_prc()}</strong>원--%>
+<%--                  </span>--%>
 
                   <!--소비자 가격-->
                   <c:if test="${cnsmr_prc != sale_prc}">

@@ -89,21 +89,24 @@
     </select>
 
     <!--후기 많은 순 , 판매량 순 이후에 추가할 수 있음-->
-<!--    <select id="select_product_list_cate_cd_mini_reivew" parameterType="String" resultType="ProductDto">-->
-<!--        SELECT prod_cd, dc_cd, name, cnsmr_prc, sale_prc-->
-<!--        FROM tb_product-->
-<!--        WHERE cate_cd LIKE concat(#{cate_cd}, '%')  AND sale_yn='y' AND dp_yn='y' AND del_yn='n' AND prod_stus IN (1,2)-->
-<!--        ORDER BY fst_reg_dt desc-->
-<!--    </select>-->
+    <!--    <select id="select_product_list_cate_cd_mini_reivew" parameterType="String" resultType="ProductDto">-->
+    <!--        SELECT prod_cd, dc_cd, name, cnsmr_prc, sale_prc-->
+    <!--        FROM tb_product-->
+    <!--        WHERE cate_cd LIKE concat(#{cate_cd}, '%')  AND sale_yn='y' AND dp_yn='y' AND del_yn='n' AND prod_stus IN (1,2)-->
+    <!--        ORDER BY fst_reg_dt desc-->
+    <!--    </select>-->
 
     <!--메인상품 [empl]-->
     <select id="select_5_product_main_empl" resultType="ProductDto">
-        SELECT prod_cd, dc_cd, name, cnsmr_prc, sale_prc, sfkp_stus, dc_rate
-        FROM main_product_common_view
-        WHERE cate_cd LIKE '02%'
-        ORDER BY sale_prc DESC
+        SELECT pd.prod_cd, pd.dc_cd, pd.name, pd.cnsmr_prc, pd.sale_prc, pd.sfkp_stus, pd.dc_rate
+        FROM main_product_common_view as pd
+        WHERE pd.prod_cd IN (SELECT prv.prod_cd
+                             FROM tb_product_review as prv
+                             GROUP BY prv.prod_cd
+                             HAVING COUNT(*) >= 20)
         LIMIT 5
     </select>
+
 
     <!--메인상품 [health]-->
     <select id="select_5_product_main_health" resultType="ProductDto">
@@ -118,6 +121,7 @@
     <select id="select_5_product_main_eat" resultType="ProductDto">
         SELECT prod_cd, dc_cd, name, cnsmr_prc, sale_prc, sfkp_stus, dc_rate
         FROM main_product_common_view
+        WHERE cate_cd LIKE '05%' OR cate_cd LIKE '02%'
         ORDER BY fst_reg_dt DESC
         LIMIT 5
     </select>
@@ -129,15 +133,24 @@
         WHERE sale_yn = 'y' AND dp_yn = 'y' AND del_yn = 'n' AND prod_stus IN (1, 2) AND opt_yn = 'n';
 -->
 
-
     <!--메인상품 [home]-->
     <select id="select_5_product_main_home" resultType="ProductDto">
         SELECT prod_cd, dc_cd, name, cnsmr_prc, sale_prc, sfkp_stus, dc_rate
-        FROM tb_product USE INDEX (tb_product_fst_reg_dt_index)
-        WHERE opt_yn = 'y' AND sale_yn='y' AND dp_yn='y' AND del_yn='n' AND prod_stus IN (1,2)
+        FROM tb_product
+        WHERE cate_cd LIKE '06%'
         ORDER BY fst_reg_dt desc
         LIMIT 5
     </select>
+
+
+    <!--    &lt;!&ndash;메인상품 [home]&ndash;&gt;-->
+    <!--    <select id="select_5_product_main_home" resultType="ProductDto">-->
+    <!--        SELECT prod_cd, dc_cd, name, cnsmr_prc, sale_prc, sfkp_stus, dc_rate-->
+    <!--        FROM tb_product USE INDEX (tb_product_fst_reg_dt_index)-->
+    <!--        WHERE opt_yn = 'y' AND sale_yn='y' AND dp_yn='y' AND del_yn='n' AND prod_stus IN (1,2)-->
+    <!--        ORDER BY fst_reg_dt desc-->
+    <!--        LIMIT 5-->
+    <!--    </select>-->
 
 
 
@@ -145,15 +158,15 @@
 
     <!-- ~~~~~ 카테고리 정렬기준 따라 호출하는 쿼리문(끝) ~~~~~ -->
 
-<!-- 컨트롤러는 흐름 서비스에서 준 결과로만, 서비스는 비즈니스 -->
+    <!-- 컨트롤러는 흐름 서비스에서 준 결과로만, 서비스는 비즈니스 -->
 
-<!--    &lt;!&ndash; 분류코드로 상품리스트 받기 "코드_%" + 판매가격 낮은 순&ndash;&gt; &lt;!&ndash;하드코딩.. 이게 맞아? &ndash;&gt;-->
-<!--    <select id="select_product_list_cate_cd__Cheap" parameterType="String" resultType="ProductDto">-->
-<!--        SELECT *-->
-<!--        FROM tb_product-->
-<!--        WHERE cate_cd LIKE concat(#{cate_cd}, '%')  AND sale_yn='y' AND dp_yn='y' AND del_yn='n' AND prod_stus IN (1,2)-->
-<!--        ORDER By sale_prc-->
-<!--    </select>-->
+    <!--    &lt;!&ndash; 분류코드로 상품리스트 받기 "코드_%" + 판매가격 낮은 순&ndash;&gt; &lt;!&ndash;하드코딩.. 이게 맞아? &ndash;&gt;-->
+    <!--    <select id="select_product_list_cate_cd__Cheap" parameterType="String" resultType="ProductDto">-->
+    <!--        SELECT *-->
+    <!--        FROM tb_product-->
+    <!--        WHERE cate_cd LIKE concat(#{cate_cd}, '%')  AND sale_yn='y' AND dp_yn='y' AND del_yn='n' AND prod_stus IN (1,2)-->
+    <!--        ORDER By sale_prc-->
+    <!--    </select>-->
 
 
     <!-- 이름으로 상품 검색하기 LIKE "%단어% -->
@@ -172,7 +185,7 @@
         VALUES (#{cate_cd}, #{prod_stus}, #{cust_cd}, #{dc_cd}, #{name}, #{mng_prod_nm}, #{sfkp_stus}, #{sfkp_mtd},
                 #{sp_prc}, #{cnsmr_prc}, #{sale_prc}, #{dc_rate}, #{mgn_rate}, #{dscpt}, #{detail}, #{min_qty}, #{weight},
                 #{stnd}, #{orplc}, #{recipe}, #{mtd}, #{distb_tlmt}, #{vld_start_dt}, #{vld_end_dt}, #{mng},
-                #{fst_reg_dt}, #{sale_yn}, #{dp_yn}, #{del_yn}, #{inv_yn}, #{opt_yn}, #{rmk}, now(),
+                now(), #{sale_yn}, #{dp_yn}, #{del_yn}, #{inv_yn}, #{opt_yn}, #{rmk}, now(),
                 #{in_id},  now(), #{up_id})
     </insert>
 
@@ -193,11 +206,11 @@
         UPDATE tb_product p
             JOIN tb_product_inventory i ON p.prod_cd = i.prod_cd
         SET p.prod_stus =
-            CASE
-                WHEN i.curr_inv > i.safe_inv THEN 1  -- 충분
-                WHEN i.curr_inv > 0 THEN 2                -- 품절임박
-                ELSE 3                                          -- 품절
-            END,
+                CASE
+                    WHEN i.curr_inv > i.safe_inv THEN 1  -- 충분
+                    WHEN i.curr_inv > 0 THEN 2                -- 품절임박
+                    ELSE 3                                          -- 품절
+                    END,
             p.up_dtm = now(),
             p.up_id = 'inv_team'
         WHERE p.del_yn = 'n'
@@ -255,7 +268,8 @@
         SELECT *
         FROM tb_product
         WHERE fst_reg_dt >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
-          AND sale_yn = 'y' AND dp_yn = 'y' AND del_yn = 'n'
+          AND sale_yn = 'y' AND dp_yn = 'y' AND del_yn = 'n' AND NOT cate_cd LIKE '01%'
+        ORDER BY fst_reg_dt desc
     </select>
 
     <!-- [베스트 (리뷰수 n개 이상) ] 지금은 3개 이상-->
@@ -271,17 +285,32 @@
 
     <!-- [특가혜택 (카테고리가 06으로 시작) ] -->
     <select id="prodset_big_dc" resultType="ProductDto">
-    SELECT *
-    FROM tb_product
-    WHERE cate_cd LIKE '06%' AND sale_yn='y' AND dp_yn='y' AND del_yn='n' AND prod_stus IN (1,2)
+        SELECT *
+        FROM tb_product
+        WHERE cate_cd LIKE '06%' AND sale_yn='y' AND dp_yn='y' AND del_yn='n' AND prod_stus IN (1,2)
     </select>
 
 
 
-<!--//필요한 값은 DB안에서 다 처리해서 나가기 (여러 함수나 SQL메서드를 사용해야 쎄보임!! 뭘좀 아는구나 ㅋㅋ good 구린건 안돼!! )-->
+    <!--  관리자 상품 리스트용 전체 상품 리스트   -->
+    <select id="all_prod_list_fot_mng" resultType="ProductDto">
+        SELECT *
+        FROM tb_product
+        WHERE del_yn='n'
+        ORDER BY fst_reg_dt desc
+        Limit 30
+    </select>
 
-<!--면접관이 보는 부분: 맵퍼, 컨트롤러 처리, 얼마나 깔끔한지-->
-<!--지원 회사 같은건 원장님께 조언얻기-->
+    <!--//필요한 값은 DB안에서 다 처리해서 나가기 (여러 함수나 SQL메서드를 사용해야 쎄보임!! 뭘좀 아는구나 ㅋㅋ good 구린건 안돼!! )-->
 
+    <!--면접관이 보는 부분: 맵퍼, 컨트롤러 처리, 얼마나 깔끔한지-->
+    <!--지원 회사 같은건 원장님께 조언얻기-->
+
+
+    <!--  위시리스트용 전체 상품 리스트   -->
+    <select id="all_prod_list_fot_wishList" resultType="ProductDto">
+        SELECT *
+        FROM tb_product
+    </select>
 
 </mapper>

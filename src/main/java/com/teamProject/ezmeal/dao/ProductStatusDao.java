@@ -1,13 +1,11 @@
 package com.teamProject.ezmeal.dao;
 
 import com.teamProject.ezmeal.domain.ProductStatusDto;
-import com.teamProject.ezmeal.domain.WishListDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 
 

@@ -87,7 +87,7 @@ public class LoginController {
 //        redirectAttrs.addFlashAttribute("loginMbrInfo",loginMbrInfo);
         return "redirect:" + redirectURL;
         // 이제 session에 있는 pk를 이용해서 값을 유지할 수 있다.
-        }
+    }
 
     /* Todo
      * 1. login form 받아와서 변경하기

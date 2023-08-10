@@ -37,13 +37,13 @@ public class AdminOrderController {
 
     // 주문 발주 확인 - 상태 update
     /* todo
-     *   1. stus a1 -> a2, h1
-     *       1.1. update | om,od : a1 -> h1
-     *       1.2. insert | osh : a1 -> a2
-     *                           * 취소, 반품, 묶음 배송 아닌 경우 == 모든 경우가 동일 할 때 주문상세 번호 : 1
-     *       1.3.                * dm  : a1 -> h1 | 이미 h1으로 생성 되어서 할 필요 X
-     *                           * dsh : 아직까지 history 변경 필요 안함.
-     * */
+    *   1. stus a1 -> a2, h1
+    *       1.1. update | om,od : a1 -> h1
+    *       1.2. insert | osh : a1 -> a2
+    *                           * 취소, 반품, 묶음 배송 아닌 경우 == 모든 경우가 동일 할 때 주문상세 번호 : 1
+    *       1.3.                * dm  : a1 -> h1 | 이미 h1으로 생성 되어서 할 필요 X
+    *                           * dsh : 아직까지 history 변경 필요 안함.
+    * */
     @PatchMapping("/before-management")
     @ResponseBody
     public String test(@SessionAttribute AdminMemberDto loginAdminInfo, @RequestBody List<Long> orderIdList) {
@@ -63,5 +63,12 @@ public class AdminOrderController {
     @GetMapping("/list")
     public String getAdminOrderList(){
         return "admin_order_list";
+    }
+
+
+    // 주문 대시 보드
+    @GetMapping("/dashboard")
+    public String getAdminOrderDashBoard() {
+        return "admin_order_dashboard";
     }
 }

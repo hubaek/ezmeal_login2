@@ -5,17 +5,18 @@ import java.util.Objects;
 
 public class NoticeDto {
     private Long notice_no;
-    private String writer ;
+    private String writer;
     private String typ;
 
     private String status;
 
-    private String title ;
+    private String title; // 제목
 
-    private LocalDateTime wrt_dt;
+    private LocalDateTime wrt_dt; // 시간
     private String wrt_dt_format;
     private String stmt;
 
+    private String hide_yn;
 
     // 기본 생성자
     public NoticeDto() {
@@ -25,15 +26,13 @@ public class NoticeDto {
     //Long, String 타입의 매개변수를 받는 생성자로, notice_no, writer, title, stmt 값을 설정하는 역할
 
 
-    public NoticeDto(Long notice_no, String writer, String title, String stmt) {
-        this.notice_no = notice_no;
+    public NoticeDto(String writer, String title, String stmt) {
         this.writer = writer;
         this.title = title;
         this.stmt = stmt;
     }
 
-    public NoticeDto(Long notice_no,String writer, String title, String stmt, String  wrt_dt_format ){
-        this.notice_no = notice_no;
+    public NoticeDto(String writer, String title, String stmt, String wrt_dt_format) {
         this.writer = writer;
         this.title = title;
         this.stmt = stmt;
@@ -59,6 +58,7 @@ public class NoticeDto {
     public void setNotice_no(Long notice_no) {
         this.notice_no = notice_no;
     }
+
     public String getWriter() {
         return writer;
     }
@@ -99,6 +99,7 @@ public class NoticeDto {
     public void setStatus(String status) {
         this.status = status;
     }
+
     public LocalDateTime getWrt_dt() {
         return wrt_dt;
     }
@@ -111,10 +112,20 @@ public class NoticeDto {
 
         return wrt_dt_format;
     }
+
     public void setWrt_dt_format(String wrt_dt_format) {
 
         this.wrt_dt_format = wrt_dt_format;
     }
+
+    public String getHide_yn() {
+        return hide_yn;
+    }
+
+    public void setHide_yn(String hide_yn) {
+        this.hide_yn = hide_yn;
+    }
+
     @Override
     public String toString() {
         return "noticeDto{" +
@@ -133,7 +144,7 @@ public class NoticeDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NoticeDto noticeDto = (NoticeDto) o;
-        return Objects.equals(notice_no, noticeDto.notice_no) && Objects.equals(writer, noticeDto.writer) && Objects.equals(title, noticeDto.title) && Objects.equals(stmt, noticeDto.stmt) ;
+        return Objects.equals(notice_no, noticeDto.notice_no) && Objects.equals(writer, noticeDto.writer) && Objects.equals(title, noticeDto.title) && Objects.equals(stmt, noticeDto.stmt);
     }
 
     @Override

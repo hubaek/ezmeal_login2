@@ -59,30 +59,30 @@
     <!--트랜잭션의 둘째--> <!--할인코드 변경 했으니 상품TB 판매가 , 마진율 수정하기-->
     <update id="update_product_sale_price_due_to_discount_update" >
         UPDATE tb_product INNER JOIN tb_product_discount
-                            ON tb_product.dc_cd = tb_product_discount.dc_cd
+            ON tb_product.dc_cd = tb_product_discount.dc_cd
         SET tb_product.sale_prc = IF(tb_product_discount.typ = 'pt',
-                                    tb_product.cnsmr_prc * (100 - tb_product_discount.rate) / 100,
-                                    tb_product.cnsmr_prc - tb_product_discount.prc),
+                                     tb_product.cnsmr_prc * (100 - tb_product_discount.rate) / 100,
+                                     tb_product.cnsmr_prc - tb_product_discount.prc),
             tb_product.mgn_rate = CASE WHEN tb_product.opt_yn = 'y' THEN NULL
-                                    ELSE ((IFNULL(tb_product.sale_prc, 0) - tb_product.sp_prc) / tb_product.sp_prc * 100) END,
+                                       ELSE ((IFNULL(tb_product.sale_prc, 0) - tb_product.sp_prc) / tb_product.sp_prc * 100) END,
             tb_product.up_dtm = now(),
             tb_product.up_id = 'ateam'
         WHERE tb_product.opt_yn='n'
     </update>
 
-<!--    <update id="update_product_sale_price_due_to_discount_update" >-->
-<!--        UPDATE tb_product-->
-<!--        SET sale_prc = (SELECT IF(tb_product_discount.typ = 'pt',-->
-<!--                                  tb_product.cnsmr_prc * (100 - tb_product_discount.rate) / 100,-->
-<!--                                  tb_product.cnsmr_prc - tb_product_discount.prc)-->
-<!--                        FROM tb_product_discount-->
-<!--                        WHERE tb_product.dc_cd = tb_product_discount.dc_cd),-->
-<!--            mgn_rate = (CASE WHEN opt_yn = 'n' THEN NULL ELSE ((IFNULL(sale_prc, 0) - sp_prc) / sp_prc * 100))-->
-<!--            up_dtm = now(),-->
-<!--            up_id = 'ateam'-->
-<!--        WHERE tb_product.opt_yn='n' AND  tb_product.dc_cd IN (SELECT dc_cd-->
-<!--            FROM tb_product_discount)-->
-<!--    </update>   -->
+    <!--    <update id="update_product_sale_price_due_to_discount_update" >-->
+    <!--        UPDATE tb_product-->
+    <!--        SET sale_prc = (SELECT IF(tb_product_discount.typ = 'pt',-->
+    <!--                                  tb_product.cnsmr_prc * (100 - tb_product_discount.rate) / 100,-->
+    <!--                                  tb_product.cnsmr_prc - tb_product_discount.prc)-->
+    <!--                        FROM tb_product_discount-->
+    <!--                        WHERE tb_product.dc_cd = tb_product_discount.dc_cd),-->
+    <!--            mgn_rate = (CASE WHEN opt_yn = 'n' THEN NULL ELSE ((IFNULL(sale_prc, 0) - sp_prc) / sp_prc * 100))-->
+    <!--            up_dtm = now(),-->
+    <!--            up_id = 'ateam'-->
+    <!--        WHERE tb_product.opt_yn='n' AND  tb_product.dc_cd IN (SELECT dc_cd-->
+    <!--            FROM tb_product_discount)-->
+    <!--    </update>   -->
 
 
 
@@ -129,12 +129,12 @@
     <!--할인코드 생성 -->
     <insert id="insert_discount" parameterType="ProductDiscountDto" >
         insert into tb_product_discount
-                    (dc_cd, cate_cd, typ, name, start_dt, end_dt,
-                    target, rate, prc, use_yn, del_yn, rmk,
-                    in_dtm, in_id, up_dtm, up_id)
+        (dc_cd, cate_cd, typ, name, start_dt, end_dt,
+         target, rate, prc, use_yn, del_yn, rmk,
+         in_dtm, in_id, up_dtm, up_id)
         values ( #{dc_cd}, #{cate_cd}, #{typ}, #{name}, #{start_dt}, #{end_dt},
-                #{target}, #{rate}, #{prc}, #{use_yn}, #{del_yn}, #{rmk},
-                now(), #{in_id}, now(), #{up_id})
+                 #{target}, #{rate}, #{prc}, #{use_yn}, #{del_yn}, #{rmk},
+                 now(), #{in_id}, now(), #{up_id})
     </insert>
 
     <!--할인 코드 꺼내기-->

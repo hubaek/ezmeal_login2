@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+
     <link rel="stylesheet" href="/css/screens/mypageHeader.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -45,7 +45,7 @@
                 <dt>주문/배송</dt>
                 <dd>
                     <a href="/mypage/orderlist">
-                        <Strong class="num" id="orderConuntText">0</Strong>
+                        <Strong class="num" id="orderConuntText">${countOrderDelivery['order_num']} / ${countOrderDelivery['dlvar_num']}</Strong>
                         건
                     </a>
                 </dd>

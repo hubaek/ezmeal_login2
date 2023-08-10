@@ -90,6 +90,8 @@
         SELECT *
         FROM tb_product_review
         WHERE prod_cd = #{prod_cd} AND revw_opub_yn='y' AND del_yn='n'
+        ORDER BY revw_id desc
+        Limit 5
     </select>
 
     <!--해당 카테고리에 있는 별점 평균 받아오기 Map(prod_cd , round(avg(star),1))-->
@@ -99,7 +101,7 @@
         where prod_cd In (select prod_cd
                           from tb_product
                           where cate_cd LIKE concat(#{cate_cd}, '%')  AND sale_yn='y'
-                                AND dp_yn='y' AND del_yn='n' AND prod_stus IN (1,2))
+                            AND dp_yn='y' AND del_yn='n' AND prod_stus IN (1,2))
 
         GROUP BY prod_cd
     </select>
@@ -134,8 +136,14 @@
         GROUP BY prod_cd
     </select>
 
-
-
-
+    <!-- taewan -->
+    <!--리뷰 생성-->
+    <!--    todo logic 깔끔하게 해서 writer 다시 받아오기-->
+    <insert id="insert_mini_review_from_orderDetail" parameterType="ProductReviewDto">
+        INSERT INTO tb_product_review (ord_id, ord_prod_dtl_id, title, stmt,star, mbr_id,
+                                       prod_cd, writer, wrt_dt, revw_opub_yn)
+        VALUES (#{ord_id}, #{ord_prod_dtl_id},  #{title}, #{stmt}, #{star}, #{mbr_id},
+                #{prod_cd}, '강*호', CURDATE(), 'y')
+    </insert>
 
 </mapper>
