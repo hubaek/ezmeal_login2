@@ -74,6 +74,14 @@ public class MemberDaoTest {
     }
 
     @Test
+    public void insertCartSeqTest() throws Exception {
+        Long memberID = 1075L;
+        int insertCartSeq = memberDao.insertCartSeq(memberID);
+        assertTrue(insertCartSeq == 1);
+        System.out.println("insertCartSeq = " + insertCartSeq);
+    }
+
+    @Test
     public void withdrawalTest() throws Exception {
         // 로그인 정보를 가져온다.
         Long getMemberId = memberDao.selectMemberId("zjfl3122");
