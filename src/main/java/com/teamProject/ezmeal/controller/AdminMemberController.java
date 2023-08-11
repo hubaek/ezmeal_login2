@@ -55,6 +55,7 @@ public class AdminMemberController {
     public List<Map<String, Object>> getMembers(@RequestParam String option, String value) {
         // jsp에서 ajax요청으로 넘어온 인자들을 map에 담는다.
         // map에 담아서 조회를 한다.
+        // 조건 추가한 부분 값도 가져와서 조회 해야함 * 추후
         System.out.println("option = " + option);
         System.out.println("value = " + value);
         Map<String, String> memberMap = new HashMap<>();
