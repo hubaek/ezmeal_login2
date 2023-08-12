@@ -70,6 +70,9 @@ public class MemberController {
     @PostMapping("/signup")
     public String postMemberAdd(@Valid MemberDto memberDto, BindingResult bindingResult, String lgin_id, String lgin_pw ,
                                 Model model, RedirectAttributes rattr, HttpServletRequest req) {
+
+        // 회원가입후 적립금 바로 지급 로직 추가해야함
+
         // 1. 유효성 검사
         if (bindingResult.hasErrors()) {
             List<ObjectError> errors = bindingResult.getAllErrors();
