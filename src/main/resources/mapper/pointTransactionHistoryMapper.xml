@@ -58,4 +58,7 @@
         WHERE mbr_id = #{memberId}
         ORDER BY pnt_trjs_hist_seq desc
     </select>
+
+    <!--  회원가입시 적립금 insert문 추가 해야함  -->
+
 </mapper>
