@@ -58,5 +58,7 @@
 
     </select>
 
+    <!--  회원정보 변경 이력  변경=update 이력=insert  -->
+
 
 </mapper>
