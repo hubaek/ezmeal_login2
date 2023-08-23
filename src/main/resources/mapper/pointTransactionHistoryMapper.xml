@@ -60,6 +60,10 @@
     </select>
 
     <!--  회원가입시 적립금 insert문 추가 해야함  -->
+    <insert id="insertPoint" parameterType="Long">
+        INSERT INTO tb_point_transaction_history (mbr_id, trjs_cd, name, trjs_pnt, stus, usfl_acmlt_pnt)
+        VALUES (#{memberId}, 'WELCOME','회원가입 신규고객 포인트',4000,'지급','4000')
+    </insert>
 
 
 </mapper>
