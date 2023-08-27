@@ -23,4 +23,9 @@ public class PointTransactionHistoryService {
     public List<PointTransactionHistoryDto> getPointList(Long memberId) {
         return pointTransactionHistoryDao.selectPointList(memberId);
     }
+
+    // 회원가입시 포인트 지급을 위한 로직
+    public int addPoint(Long memberId) {
+        return pointTransactionHistoryDao.insertPoint(memberId);
+    }
 }

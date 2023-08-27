@@ -32,4 +32,9 @@ public class PointTransactionHistoryDao {
         return session.selectList(namespace + "selectPointList", memberId);
     }
 
+    // 회원가입시 포인트 지급
+    public int insertPoint(Long memberId) {
+        return session.insert(namespace + "insertPoint", memberId);
+    }
+
 }
