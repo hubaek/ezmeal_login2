@@ -3,6 +3,7 @@ package com.teamProject.ezmeal.controller;
 import com.teamProject.ezmeal.domain.MemberDto;
 import com.teamProject.ezmeal.service.LoginService;
 import com.teamProject.ezmeal.service.MemberService;
+import com.teamProject.ezmeal.service.PointTransactionHistoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ public class MemberController {
 
     private final MemberService memberService;
     private final LoginService loginService;
+    private final PointTransactionHistoryService pointTransactionHistoryService;
 
 
     // 아이디 중복체크 로직
@@ -97,15 +99,18 @@ public class MemberController {
             // DB에 회원정보가 저장이 되고 동시에 로그인까지 되게 하려면,
             // memberId를 세션에 담는다.
             Long memberId = loginService.loginInfo(lgin_id);
-            System.out.println("memberId = " + memberId);
             HttpSession session = req.getSession();
             session.setAttribute("memberId",memberId);
+
             // 회원가입완료한 회원정보를 세션에 담는다.
             MemberDto loginMbrInfo = memberService.getMemberInfo(memberId);
             session.setAttribute("loginMbrInfo",loginMbrInfo);
 
             // 회원가입하면, 장바구니seq를 각 회원에 부여한다.
             memberService.registerCartSeq(memberId);
+
+            // 회원가입하면, 회원가입기념 적립금을 지급해준다.
+            pointTransactionHistoryService.addPoint(memberId);
 
             model.addAttribute("checkSignupSuccess", "signup success!!");
             return "redirect:/member/signupSuccess"; // insert 성공시에 signupSuccess 페이지로 감

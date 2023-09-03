@@ -40,7 +40,8 @@ public class MemberDao {
         return session.insert(namespace + "insertCartSeq", memberId);
     }
 
-    public MemberDto selectMemberInfo(Long memberId)  {    // 회원정보 조회
+    // 회원정보 조회
+    public MemberDto selectMemberInfo(Long memberId)  {
         return session.selectOne(namespace + "selectMemberInfo", memberId);
     }
 
