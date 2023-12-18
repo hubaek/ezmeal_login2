@@ -35,4 +35,11 @@ public class PointTransactionHistoryDaoTest {
         int point = pointTransactionHistoryDao.selectPoint(1001L);
         System.out.println("point = " + point);
     }
+
+    @Test
+    public void insertPoint(){
+        int insert = pointTransactionHistoryDao.insertPoint(1002L);
+        assertEquals(1,insert);
+
+    }
 }
