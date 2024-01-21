@@ -13,8 +13,8 @@
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
         <property name="url"
                           value="jdbc:mysql://127.0.0.1:3306/ezmeallocal?useUnicode=true&amp;characterEncoding=utf8"/>
-        <property name="username" value="hubaek"></property>
-        <property name="password" value="1234"></property>
+        <property name="username" value="****"></property>
+        <property name="password" value="****"></property>
         <!--    깃허브에 username , password **** 표시로 바꿔서 커밋하고 변경하기..되나..?    -->
     </bean>
 
