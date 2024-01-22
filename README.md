@@ -55,18 +55,29 @@
 <img src="./img/ezmealERD.png" ></img>
 
 ### 화면 구성 캡쳐 
-#### 로그인화면
-#### 회원가입화면
-#### 회원정보수정
-#### 회원탈퇴화면
+#### 로그인화면(/login)
+<img src="./img/login.png" ></img>
+#### 회원가입화면(/member/signup)
+<img src="./img/signup.png" ></img>
+#### 회원가입완료(/member/signupSuccess)
+<img src="./img/signupSuccess.png" ></img>
+#### 회원정보수정(/mypage/modify)
+<img src="./img/modify.png" ></img>
+#### 회원탈퇴화면(/mypage/withdrawal)
+<img src="./img/withdrawal.jpg" ></img>
 #### 마이페이지 헤더,사이드바
-#### 적립금
-#### 관리자 로그인
-#### 관리자 회원정보조회 
+<img src="./img/mypageUI.jpg" ></img>
+#### 적립금(/mypage/point)
+<img src="./img/point.png" ></img>
+#### 관리자 로그인(/admin/login)
+<img src="./img/adminLogin.png" ></img>
+#### 관리자 회원정보조회(/admin/member/info)
+<img src="./img/adminMembers.jpg" ></img>
 
 
-## 주요기능
+[//]: # (## 주요기능)
 
-프로젝트의 주요기능들을 소개한다
+[//]: # ()
+[//]: # (프로젝트의 주요기능들을 소개한다)
 
-## reference 추가 예정 
+[//]: # (## reference 추가 예정 )
